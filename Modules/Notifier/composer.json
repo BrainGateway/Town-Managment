@@ -1,0 +1,27 @@
+{
+    "name": "whf/notifier-module",
+    "type": "laravel-module",
+    "description": "Notifier will offer you every power to communicate with your app users and other applications. That includes email, sms, push notifications, webhooks etc.",
+    "require": {},
+    "authors": [
+        {
+            "name": "Karigar Web Solutions",
+            "email": "info@karigar.pk"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Notifier\\Providers\\NotifierServiceProvider"
+            ],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Notifier\\": ""
+        }
+    }
+}

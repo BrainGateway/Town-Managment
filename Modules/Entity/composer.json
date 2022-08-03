@@ -1,0 +1,27 @@
+{
+    "name": "whf/entity-module",
+    "type": "laravel-module",
+    "description": "All operations related to People, Companies, Branches and their addresses is part of this module",
+    "require": {},
+    "authors": [
+        {
+            "name": "Karigar Web Solutions",
+            "email": "info@karigar.pk"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Entity\\Providers\\EntityServiceProvider"
+            ],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Entity\\": ""
+        }
+    }
+}
