@@ -1,8 +1,0 @@
-{
-    "Base": true,
-    "Entity": true,
-    "Media": true,
-    "Notifier": true,
-    "User": true,
-    "UserEntity": true
-}

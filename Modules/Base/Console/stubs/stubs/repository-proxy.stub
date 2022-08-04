@@ -1,5 +1,0 @@
-<?php
-
-namespace $NAMESPACE$;
-
-final class $CLASS$ extends Proxy$CLASS$ {}
