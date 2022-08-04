@@ -22,17 +22,8 @@
         "carlos-meneses/laravel-mpdf": "^2.1",
         "joshbrw/laravel-module-installer": "^1.0",
         "kalnoy/nestedset": "^6.0",
-        "league/csv": "^9.6",
-        "nwidart/laravel-modules": "^7.1",
-        "predis/predis": "^1.1",
-        "simplesoftwareio/simple-qrcode": "^2.0",
-        "spatie/laravel-enum": "^2.5",
-        "whf/base-module": "dev-develop",
-        "whf/entity-module": "dev-develop",
-        "whf/media-module": "dev-develop",
-        "whf/notifier-module": "dev-develop",
-        "whf/user-entity-module": "dev-develop",
-        "whf/user-module": "dev-develop"
+        "league/csv": "^9.6"
+        
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -77,14 +68,12 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
-    },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://karigar.repo.repman.io"
+        "sort-packages": true,
+        "allow-plugins": {
+            "joshbrw/laravel-module-installer": true
         }
-    ],
+    },
+    
     "minimum-stability": "dev",
     "prefer-stable": true
 }
