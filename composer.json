@@ -19,11 +19,15 @@
         "spatie/laravel-permission": "^3.3",
         "yajra/laravel-datatables-buttons": "4.10",
         "yajra/laravel-datatables-oracle": "~9.0",
+<<<<<<< HEAD
+        "carlos-meneses/laravel-mpdf": "^2.1"
+=======
         "carlos-meneses/laravel-mpdf": "^2.1",
         "joshbrw/laravel-module-installer": "^1.0",
         "kalnoy/nestedset": "^6.0",
         "league/csv": "^9.6"
         
+>>>>>>> main
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -68,12 +72,17 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
+<<<<<<< HEAD
+        "sort-packages": true
+    },
+=======
         "sort-packages": true,
         "allow-plugins": {
             "joshbrw/laravel-module-installer": true
         }
     },
     
+>>>>>>> main
     "minimum-stability": "dev",
     "prefer-stable": true
 }
