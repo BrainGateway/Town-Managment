@@ -27,11 +27,11 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $table = 'fc_users';
+    protected $table = 'users';
     protected $fillable = [
         'first_name',
         'last_name',
-        'user_email',
+        'email',
         'password',
         'user_level',
     ];
@@ -175,7 +175,7 @@ class User extends Authenticatable
     }
     protected static function getUserIDANDName(){
 
-        $query = DB::table("fc_users")->whereIn('user_level',['catalog-user','god'])->select("id as userId","first_name as userName");
+        $query = DB::table("users")->whereIn('user_level',['catalog-user','god'])->select("id as userId","first_name as userName");
         $getUsers = $query->get();
         return $getUsers;
     }

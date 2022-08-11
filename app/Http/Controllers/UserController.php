@@ -32,6 +32,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        $user
         return view('user-management.user.index');
     }
 

@@ -6,17 +6,6 @@
       0 => 'Bavix\\LaravelClickHouse\\ClickHouseServiceProvider',
     ),
   ),
-  'carlos-meneses/laravel-mpdf' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Meneses\\LaravelMpdf\\LaravelMpdfServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'PDF' => 'Meneses\\LaravelMpdf\\Facades\\LaravelMpdf',
-    ),
-  ),
   'facade/ignition' => 
   array (
     'providers' => 
@@ -40,13 +29,6 @@
     'providers' => 
     array (
       0 => 'Fruitcake\\Cors\\CorsServiceProvider',
-    ),
-  ),
-  'kalnoy/nestedset' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Kalnoy\\Nestedset\\NestedSetServiceProvider',
     ),
   ),
   'laravel/sail' => 

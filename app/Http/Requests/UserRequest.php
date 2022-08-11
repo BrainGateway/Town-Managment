@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
         $validationArray = [
             "first_name"         => 'required',
             "last_name"         => 'required',
-            "user_email"        => 'required|email|max:200|unique:fc_users,email,'.$this->route('user').',id',
+            "user_email"        => 'required|email|max:200|unique:town_users,email,'.$this->route('user').',id',
             "user_role"         => 'required|array|max:500',
 
         ];

@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8"/>
-    <title>{{ config('app.name', 'Town Managment') }}</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="shortcut icon" href="{{ asset('media/logos/favicon.ico') }}"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
