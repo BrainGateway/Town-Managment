@@ -168,12 +168,12 @@ class RoleController extends Controller
     {
         $getUserRole = Helpers::loggedInUserRole();
         $role = Role::where("id", $id)->with("permissions")->first();
-        $query = DB::table("fc_users")->where("role_id", $id)
-            ->join(config('permission.table_names.model_has_roles'), config('permission.table_names.model_has_roles').".model_id", "fc_users.id")
-            ->select("fc_users.id", "fc_users.email", "fc_users.first_name", "fc_users.created_at");
+        $query = DB::table("town_users")->where("role_id", $id)
+            ->join(config('permission.table_names.model_has_roles'), config('permission.table_names.model_has_roles').".model_id", "town_users.id")
+            ->select("town_users.id", "town_users.email", "town_users.first_name", "town_users.created_at");
 
         $getUsers = $query
-            ->orderBy("fc_users.id", "desc")
+            ->orderBy("town_users.id", "desc")
             ->get();
 
         return view('user-management.role.show', compact("role", "getUsers"));
