@@ -22,11 +22,14 @@ class TownController extends Controller
      */
     public function index(Request $request)
     {
+        dd('towns'  , $request->ajax());
+        
         try{
             if ($request->is('api/*')) {
                 return TownResource::collection(Town::all());
             }else{
                 if ($request->ajax()) {
+                    
                     $towns =  Town::indexTown();
                     $townsDatatable = !empty($towns) ? $towns : [];
                     return $townsDatatable;
