@@ -11,7 +11,6 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class TownController extends Controller
@@ -22,14 +21,12 @@ class TownController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {        
+    {
         try{
             if ($request->is('api/*')) {
                 return TownResource::collection(Town::all());
             }else{
-
                 if ($request->ajax()) {
-                    
                     $towns =  Town::indexTown();
                     $townsDatatable = !empty($towns) ? $towns : [];
                     return $townsDatatable;
@@ -111,7 +108,6 @@ class TownController extends Controller
      */
     public function edit($id){
         $town      = Town::findOrFail($id);
-        // dd($town);
         return view('towns.edit', compact('town'));
     }
 

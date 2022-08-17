@@ -457,6 +457,7 @@
 #60 C:\\xampp\\htdocs\\cartlow-bootstrap\\public\\index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #61 C:\\xampp\\htdocs\\cartlow-bootstrap\\server.php(21): require_once('C:\\\\xampp\\\\htdocs...')
 #62 {main}
+<<<<<<< HEAD
 "} 
 [2022-08-13 05:23:44] local.ERROR: syntax error, unexpected 'return' (T_RETURN) {"exception":"[object] (ParseError(code: 0): syntax error, unexpected 'return' (T_RETURN) at C:\\xampp\\htdocs\\town\\Town-Managment\\app\\Http\\Controllers\\UserController.php:36)
 [stacktrace]
@@ -667,6 +668,8 @@
 #56 C:\\xampp\\htdocs\\town\\Town-Managment\\public\\index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #57 C:\\xampp\\htdocs\\town\\Town-Managment\\server.php(21): require_once('C:\\\\xampp\\\\htdocs...')
 #58 {main}
+=======
+>>>>>>> main
 "} 
 [2022-08-13 05:32:42] local.ERROR: Undefined variable: category (View: C:\xampp\htdocs\town\Town-Managment\resources\views\towns\create.blade.php) {"view":{"view":"C:\\xampp\\htdocs\\town\\Town-Managment\\resources\\views/towns/create.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1876386781 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#1402</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
