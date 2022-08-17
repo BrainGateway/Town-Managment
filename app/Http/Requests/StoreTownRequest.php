@@ -13,7 +13,7 @@ class StoreTownRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,13 @@ class StoreTownRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
-            //
+            'name' => 'required',
+            'address'  => 'required',
+            'phoneNumber'  => 'required',
+            'NumOfPlots'  => 'required',
+            'logo'  => 'required',
         ];
     }
 }

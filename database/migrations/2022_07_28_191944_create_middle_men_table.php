@@ -18,7 +18,7 @@ class CreateMiddleMenTable extends Migration
             $table->string('name');
             $table->longText('address');
             $table->integer('phoneNumber');
-            $table->unsignedBigInteger('town_id');
+            $table->unsignedBigInteger('town_id')->nullable();
             $table->foreign('town_id')->references('id')->on('towns');
             $table->timestamps();
         });
