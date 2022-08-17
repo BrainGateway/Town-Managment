@@ -31,9 +31,12 @@ class Town extends Model
         $data = Town::query();
         return DataTables::of($data)
                 ->addIndexColumn()
-
+                ->addColumn('logo', function ($row) {
+                    $html = '<img src="'.asset("assets/images/".$row->logo).'" class=""   height = "55px" alt="Responsive image">';
+                    return $html;
+                })
                 ->addColumn('action', function ($row) {
-                    $html = '<a href="' . route("tests.edit", $row->id) . '" class="btn-sm btn btn-clean btn-icon btn-light-primary me-2 p-0 " data-type="edit" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit this Company">
+                    $html = '<a href="' . route("towns.edit", $row->id) . '" class="btn-sm btn btn-clean btn-icon btn-light-primary me-2 p-0 " data-type="edit" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit this Company">
                                     <i class="fa fa-pencil-alt"></i>
                                 </a>';
                     $html .= '<a href="javascript:void(0);" class="btn-sm btn btn-clean btn-icon btn-light-danger p-0 delete-action" data-delete="' . $row->id . '" title="delete details" data-type="edit" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete this Company">
@@ -42,7 +45,7 @@ class Town extends Model
 
                     return $html;
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['action' , 'logo'])
                 ->make(true);
 
     }

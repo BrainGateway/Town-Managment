@@ -68,7 +68,8 @@ class TownController extends Controller
             {
                 $logo               = time().'-logo.'.$request->logo->getClientOriginalExtension();
                 $data['logo']       = $logo;
-                // $request->icon->move("assets/images", $logo);
+                // Store Image in Public Folder
+                $request->logo->move(public_path('town'), $logo); 
             }
             else {
                 $data['logo']       = time().'-logo.';
@@ -125,8 +126,8 @@ class TownController extends Controller
 
             if($request->hasFile('logo'))
             {
-                if(File::exists(asset("assets/images/".$town->logo))){
-                    unlink(asset("assets/images/".$town->logo));
+                if(File::exists(asset("town/".$town->logo))){
+                    unlink(asset("town/".$town->logo));
                 }
                 $logo               = time().'-logo.'.$request->logo->getClientOriginalExtension();
                 $data['logo']       = $logo;

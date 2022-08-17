@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Helpers\S3Helper;
 
+use App\Http\Controllers\TownController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,7 +37,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('permissions', App\Http\Controllers\PermissionController::class);
     Route::get('permissions-lists', [App\Http\Controllers\PermissionController::class, 'getPermissionLists'])->name('permissions-lists');
     Route::post('/role/permissions', [App\Http\Controllers\PermissionController::class, 'getPermissionsByRole'])->name('get-permissions-by-role');
-//});
+  //});
    // Route::middleware("has_access:Role")->group(function () {
     Route::resource('roles', Controllers\RoleController::class);
     //});
@@ -47,4 +50,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::middleware("has_access:Change Password")->group(function () {
     Route::patch('/users-password-update/{id}', [Controllers\UserController::class, 'updatePassword'])->name('update-password');
     });
+
+    Route::resource('towns',                        TownController::class);
+
 });

@@ -19,7 +19,7 @@ class CreateBlocksTable extends Migration
             $table->longText('address');
             $table->integer('NumOfPlots');
             $table->string('logo');
-            $table->unsignedBigInteger('town_id');
+            $table->unsignedBigInteger('town_id')->nullable();
             $table->foreign('town_id')->references('id')->on('towns');
             $table->timestamps();
         });

@@ -20,9 +20,7 @@ class TownResource extends JsonResource
             'address'                => $this->address,
             'phoneNumber'               => $this->phoneNumber,
             'NumOfPlots'                 => $this->NumOfPlots,
-            'logo'                      => asset("assets/images/".$this->logo),
-
-
+            'logo'                      => asset("town/".$this->logo),
         ];
     }
 }

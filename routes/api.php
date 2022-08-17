@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\TownController;
+use App\Http\Controllers\BlockController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::resource('towns',                TownController::class);
+Route::resource('blocks',               BlockController::class);

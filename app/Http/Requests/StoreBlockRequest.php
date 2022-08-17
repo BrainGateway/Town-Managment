@@ -13,7 +13,7 @@ class StoreBlockRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class StoreBlockRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required',
+            'address' => 'required',
+            'NumOfPlots'  => 'required',
+            'town_id' => 'required',
+            'logo'  => 'required',
         ];
     }
 }
