@@ -132,7 +132,7 @@ class TownController extends Controller
                 $logo               = time().'-logo.'.$request->logo->getClientOriginalExtension();
                 $data['logo']       = $logo;
 
-                // $request->icon->move("assets/images", $logo);
+                $request->logo->move(public_path('town'), $logo); 
             }
 
             Town::updateTown($id, $data);

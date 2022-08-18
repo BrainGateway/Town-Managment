@@ -20,3 +20,5 @@ yarn-error.log
 /public/media
 /public/plugins
 /public/vendor
+/public/block
+/public/town

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\MiddleMan;
 use App\Http\Requests\StoreMiddleManRequest;
 use App\Http\Requests\UpdateMiddleManRequest;
+use App\Http\Resources\MiddleManResource;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 
 class MiddleManController extends Controller
 {
@@ -25,7 +28,7 @@ class MiddleManController extends Controller
      */
     public function create()
     {
-        //
+        return view('mmd.create');
     }
 
     /**
@@ -36,7 +39,30 @@ class MiddleManController extends Controller
      */
     public function store(StoreMiddleManRequest $request)
     {
-        //
+        try {
+            $data  = Arr::only($request->validated(), ['name', 'address', 'phoneNumber', 'cnic' , 'town_id']);
+
+            if ($request->hasFile('picture')) {
+                $pic      = time().'-picture'.$request->picture->getClientOriginalExtension();
+                $data['picture'] = $pic;
+                $request->picture->move(public_path('mmd'), $pic);
+            }else{
+                $data['picture'] = time().'-picture.';
+            }
+
+            $mmd   = MiddleMan::createMmd($data);
+
+            if ($request->is('api/*')) {
+                return $this->show($mmd->id);
+            }else{
+                return redirect()->route('mmd.index');
+            }
+        } catch (\Throwable $th) {
+            Log::debug($th->getMessage());
+            Log::debug($th->getTraceAsString());
+            return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
+        
+        }
     }
 
     /**
@@ -45,9 +71,9 @@ class MiddleManController extends Controller
      * @param  \App\Models\MiddleMan  $middleMan
      * @return \Illuminate\Http\Response
      */
-    public function show(MiddleMan $middleMan)
+    public function show($id)
     {
-        //
+        return new MiddleManResource(MiddleMan::findOrFail($id));
     }
 
     /**
