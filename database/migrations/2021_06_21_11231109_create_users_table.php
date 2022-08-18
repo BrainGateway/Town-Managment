@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMiddleMenTable extends Migration
+class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateMiddleMenTable extends Migration
      */
     public function up()
     {
-        Schema::create('middle_men', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->longText('address');
-            $table->integer('phoneNumber');
-            $table->string('picture');
-            $table->integer('cnic');
-            $table->unsignedBigInteger('town_id')->nullable();
-            $table->foreign('town_id')->references('id')->on('towns');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -33,6 +31,6 @@ class CreateMiddleMenTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('middle_men');
+        Schema::dropIfExists('users');
     }
 }

@@ -32,7 +32,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user
         return view('user-management.user.index');
     }
 
@@ -217,7 +216,7 @@ class UserController extends Controller
     public function getUsersLists( Request $request )
     {
 
-        $query = User::whereIn('user_level',[config('app.user_level'),'god'])->with("roles")->with("permissions");
+        $query = User::with("roles")->with("permissions");
 
         if ($request->ajax()) {
 
@@ -266,13 +265,13 @@ class UserController extends Controller
                     <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
                                 <a href="' . $edit_hrf. '">
                                     <div class="symbol-label fs-3 bg-light-danger text-danger">
-                                    '.mb_substr($row->first_name.' '.$row->last_name, 0, 1).'
+                                    '.mb_substr($row->name, 0, 1).'
                                     </div>
                                 </a>
                             </div>
                             <div class="d-flex flex-column">
                                 <a href="' . $edit_hrf. '" class="text-gray-800 text-hover-primary mb-1">
-                                    '.$row->first_name.' '.$row->last_name.'
+                                    '.$row->name.'
                                 </a>
                                 <span>'.$row->email.'</span>
                             </div>
@@ -295,13 +294,13 @@ class UserController extends Controller
             })
             ->addColumn('userPermissions', function ($row) {
                 $permissionHtml = null;
-                if (!$row->permissions->isEmpty()) {
-                    foreach ($row->permissions as $permission) {
-                        $permissionHtml .= '<div class="badge badge-light-primary fs-7"> ' . $permission->name . ' </div>';
+                if (count($row->getPermissionsViaRoles() ) > 0) {
+                    foreach ($row->getPermissionsViaRoles() as $permission) {
+                        // dd($row->getPermissionsViaRoles());
+                        $permissionHtml .= '<div class="badge badge-light-primary fs-7"> ' .  htmlentities($permission->name, ENT_QUOTES, 'UTF-8', false)  . ' </div>';
                     }
-                }
-                else {
-                    $permissionHtml .= '<div class="badge badge-light-danger fs-7"> No record found </div>';
+                } else {
+                    $permissionHtml .= '<div class="badge badge-light-danger fs-7">No record found </div>';
                 }
                 return $permissionHtml;
             })
