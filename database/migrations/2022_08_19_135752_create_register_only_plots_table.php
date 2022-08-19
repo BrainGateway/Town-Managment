@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePlotSalesTable extends Migration
+class CreateRegisterOnlyPlotsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePlotSalesTable extends Migration
      */
     public function up()
     {
-        Schema::create('plot_sales', function (Blueprint $table) {
+        Schema::create('register_only_plots', function (Blueprint $table) {
             $table->id();
             $table->string('plot_number');
             $table->string('size');
@@ -27,7 +27,6 @@ class CreatePlotSalesTable extends Migration
             $table->integer('deal_validity');
             $table->string('sale_man');
             $table->integer('mmd');
-            $table->integer('register_only');
             $table->unsignedBigInteger('town_id')->nullable();
             $table->foreign('town_id')->references('id')->on('towns');
             $table->unsignedBigInteger('block_id')->nullable();
@@ -47,6 +46,6 @@ class CreatePlotSalesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('plot_sales');
+        Schema::dropIfExists('register_only_plots');
     }
 }
