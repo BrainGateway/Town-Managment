@@ -8,6 +8,8 @@ use App\Http\Requests\UpdateMiddleManRequest;
 use App\Http\Resources\MiddleManResource;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
+
 
 class MiddleManController extends Controller
 {
@@ -16,9 +18,30 @@ class MiddleManController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        try {
+            if ($request->is('api/*')) {
+                return MiddleManResource::collection(MiddleMan::all());
+
+            } else {
+                if ($request->is('api/*')) {
+                   $mmd = MiddleMan::indexMMD();
+                   $mmdsDatatable = !empty($mmd) ? $mmd : [];
+                   return $mmdsDatatable;
+                }
+
+                return view('mmd.index');
+            }
+            
+
+        }catch (\Throwable $th){
+
+            Log::debug($th->getMessage());
+            Log::debug($th->getTraceAsString());
+            return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
+
+        }
     }
 
     /**
@@ -49,7 +72,7 @@ class MiddleManController extends Controller
             }else{
                 $data['picture'] = time().'-picture.';
             }
-
+// dd();
             $mmd   = MiddleMan::createMmd($data);
 
             if ($request->is('api/*')) {
@@ -82,9 +105,10 @@ class MiddleManController extends Controller
      * @param  \App\Models\MiddleMan  $middleMan
      * @return \Illuminate\Http\Response
      */
-    public function edit(MiddleMan $middleMan)
+    public function edit($id)
     {
-        //
+        $mmd = Middleman::findOrFail($id);
+        return view('mmd.edit' , compact('mmd'));
     }
 
     /**
@@ -94,9 +118,33 @@ class MiddleManController extends Controller
      * @param  \App\Models\MiddleMan  $middleMan
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateMiddleManRequest $request, MiddleMan $middleMan)
+    public function update(UpdateMiddleManRequest $request, $id)
     {
-        //
+        try {
+            $mmd = MiddleMan::findOrFail($id);
+            $data = Arr::only($request->validated(), ['name', 'address', 'phoneNumber', 'cnic' , 'town_id']);
+            $pic  = time().'-picture.'.$request->picture->getClientOriginalExtension();
+            if ($request->hasFile('picture')) {
+                unlink(asset('mmd/'.$mmd->picture));
+            }
+            $picture = time().'-picture.'.$reuest->picture->getClientOriginalExtension();
+            $data['picture'] = $picture;
+            $request->picture->move(public_path('mmd') , $picture);
+
+            MiddleMan::updateMmd($data);
+
+            if ($request->is('api/*')) {
+                return $this->show($id);
+            } else {
+                return redirect->route('mmd.index');
+            }
+            
+        } catch (\Throwable $th) {
+            Log::debug($th->getMessage());
+            Log::debug($th->getTraceAsString());
+            return response()->json(['status' => 'error' , 'Message' => $th->getMessage()]);
+        
+        }
     }
 
     /**
@@ -105,8 +153,15 @@ class MiddleManController extends Controller
      * @param  \App\Models\MiddleMan  $middleMan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MiddleMan $middleMan)
+    public function destroy($id)
     {
-        //
+        try {
+            MiddleMan::destroyMmd($id);
+            return response()->json(['status' => 'success' , 'Message' => 'Requested MMD is deleted successfully']);
+        } catch (\Throwable $th) {
+            Log::debug($th->getMessage());
+            Log::debug($th->getTraceAsString());
+            return response()->json(['status' => 'error' , 'Message' => $th->getMessage()]);
+        }
     }
 }

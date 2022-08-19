@@ -21,4 +21,4 @@ yarn-error.log
 /public/plugins
 /public/vendor
 /public/block
-/public/town
+/public/*

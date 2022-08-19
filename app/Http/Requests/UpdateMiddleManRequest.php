@@ -13,7 +13,7 @@ class UpdateMiddleManRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,12 @@ class UpdateMiddleManRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required',
+            'address'  => 'required',
+            'phoneNumber'  => 'required',
+            'town_id'  => 'required',
+            'picture'  => 'required',
+            'cnic'  => 'required'
         ];
     }
 }
