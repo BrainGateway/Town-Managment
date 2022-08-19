@@ -15,6 +15,9 @@ class CreatePlotTypesTable extends Migration
     {
         Schema::create('plot_types', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->unsignedBigInteger('town_id')->nullable();
+            $table->foreign('town_id')->references('id')->on('towns');
             $table->timestamps();
         });
     }
