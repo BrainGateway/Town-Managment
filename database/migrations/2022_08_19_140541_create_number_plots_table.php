@@ -15,6 +15,12 @@ class CreateNumberPlotsTable extends Migration
     {
         Schema::create('number_plots', function (Blueprint $table) {
             $table->id();
+            $table->string('plot_number');
+            $table->string('plot)type');
+            $table->string('size');
+            $table->string('dimension');
+            $table->unsignedBigInteger('town_id')->nullable();
+            $table->foreign('town_id')->references('id')->on('towns');
             $table->timestamps();
         });
     }
