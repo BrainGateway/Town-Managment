@@ -15,7 +15,22 @@ class PlotSizeController extends Controller
      */
     public function index()
     {
-        //
+        try{
+            if ($request->is('api/*')) {
+                return PlotSizeResource::collection(Plot::all());
+            }else{
+                if ($request->ajax()) {
+                    $plotSize =  Plot::indexTown();
+                    $plotSizeDatatable = !empty($plotSize) ? $plotSize : [];
+                    return $plotSizeDatatable;
+                 }
+                return view('plotSize.index');
+            }
+        } catch(\Throwable $th) {
+            Log::debug($th->getMessage());
+            Log::debug($th->getTraceAsString());
+            return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
+        }
     }
 
     /**
@@ -25,7 +40,8 @@ class PlotSizeController extends Controller
      */
     public function create()
     {
-        //
+        return view('plotSize.create');
+
     }
 
     /**
@@ -36,7 +52,20 @@ class PlotSizeController extends Controller
      */
     public function store(StorePlotSizeRequest $request)
     {
-        //
+        try{
+            $data               = Arr::only($request->validated(), ['size', 'dimension' , 'town_id']);
+            $plotSize   = PlotSize::createplot($data);
+
+            if ($request->is('api/*')) {
+                return $this->show($plotSize->id);
+            }else{
+                return redirect()->route('plotSize.index');
+            }
+        } catch(\Throwable $th) {
+            Log::debug($th->getMessage());
+            Log::debug($th->getTraceAsString());
+            return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
+        }
     }
 
     /**
@@ -45,9 +74,9 @@ class PlotSizeController extends Controller
      * @param  \App\Models\PlotSize  $plotSize
      * @return \Illuminate\Http\Response
      */
-    public function show(PlotSize $plotSize)
+    public function show($id)
     {
-        //
+        return new PlotSizeResource(PlotSize::findOrFail($id));
     }
 
     /**
@@ -56,9 +85,10 @@ class PlotSizeController extends Controller
      * @param  \App\Models\PlotSize  $plotSize
      * @return \Illuminate\Http\Response
      */
-    public function edit(PlotSize $plotSize)
+    public function edit($id)
     {
-        //
+        $plotSize      = PlotSize::findOrFail($id);
+        return view('plotSize.edit', compact('plotSize'));
     }
 
     /**
@@ -68,9 +98,25 @@ class PlotSizeController extends Controller
      * @param  \App\Models\PlotSize  $plotSize
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePlotSizeRequest $request, PlotSize $plotSize)
+    public function update(UpdatePlotSizeRequest $request, $id)
     {
-        //
+        try{
+            $plotSize               = plotSize::findOrFail($id);
+            $data               = Arr::only($request->validated(), ['size', 'dimension' , 'town_id']);
+            
+            plotSize::updatePlotSize($id, $data);
+            if ($request->is('api/*')) {
+
+                return $this->show($id);
+            }else{
+                return redirect()->route('plotSize.index');
+            }
+
+        } catch(\Throwable $th) {
+            Log::debug($th->getMessage());
+            Log::debug($th->getTraceAsString());
+            return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
+        }
     }
 
     /**
@@ -79,8 +125,15 @@ class PlotSizeController extends Controller
      * @param  \App\Models\PlotSize  $plotSize
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PlotSize $plotSize)
+    public function destroyPlotSize($id)
     {
-        //
+        try{
+            PlotSize::destroyPlotSize($id);
+            return response()->json(['message' => 'Requested PlotSize is deleted successfully']);
+        } catch(\Throwable $th) {
+            Log::debug($th->getMessage());
+            Log::debug($th->getTraceAsString());
+            return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
+        }
     }
 }

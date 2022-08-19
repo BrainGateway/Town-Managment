@@ -6201,3 +6201,19 @@ Stack trace:
 #42 /var/www/html/Town-Managment/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle()
 #43 {main}
 "} 
+[2022-08-19 18:23:30] local.ERROR: syntax error, unexpected token "(", expecting "function" or "const" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"(\", expecting \"function\" or \"const\" at /var/www/html/Town-Managment/app/Models/Plot.php:11)
+[stacktrace]
+#0 {main}
+"} 
+[2022-08-19 18:23:57] local.ERROR: syntax error, unexpected token "(", expecting "function" or "const" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"(\", expecting \"function\" or \"const\" at /var/www/html/Town-Managment/app/Models/Plot.php:11)
+[stacktrace]
+#0 {main}
+"} 
+[2022-08-19 18:41:50] local.ERROR: syntax error, unexpected token "(", expecting "function" or "const" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"(\", expecting \"function\" or \"const\" at /var/www/html/Town-Managment/app/Models/PlotSize.php:11)
+[stacktrace]
+#0 {main}
+"} 
+[2022-08-19 18:42:03] local.ERROR: syntax error, unexpected token "(", expecting "function" or "const" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"(\", expecting \"function\" or \"const\" at /var/www/html/Town-Managment/app/Models/PlotSize.php:11)
+[stacktrace]
+#0 {main}
+"} 

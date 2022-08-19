@@ -15,7 +15,22 @@ class PlotController extends Controller
      */
     public function index()
     {
-        //
+        try{
+            if ($request->is('api/*')) {
+                return TownResource::collection(Plot::all());
+            }else{
+                if ($request->ajax()) {
+                    $plots =  Plot::indexTown();
+                    $plotsDatatable = !empty($plots) ? $plots : [];
+                    return $plotsDatatable;
+                 }
+                return view('plot.index');
+            }
+        } catch(\Throwable $th) {
+            Log::debug($th->getMessage());
+            Log::debug($th->getTraceAsString());
+            return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
+        }
     }
 
     /**
@@ -25,7 +40,7 @@ class PlotController extends Controller
      */
     public function create()
     {
-        //
+        return view('plot.create');
     }
 
     /**
@@ -36,7 +51,22 @@ class PlotController extends Controller
      */
     public function store(StorePlotRequest $request)
     {
-        //
+        try{
+
+
+            $data               = Arr::only($request->validated(), ['plot_number', 'plot_type', 'size', 'dimension' , 'town_id']);
+            $plot   = Plot::createplot($data);
+
+            if ($request->is('api/*')) {
+                return $this->show($plot->id);
+            }else{
+                return redirect()->route('plot.index');
+            }
+        } catch(\Throwable $th) {
+            Log::debug($th->getMessage());
+            Log::debug($th->getTraceAsString());
+            return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
+        }
     }
 
     /**
@@ -45,9 +75,9 @@ class PlotController extends Controller
      * @param  \App\Models\Plot  $plot
      * @return \Illuminate\Http\Response
      */
-    public function show(Plot $plot)
+    public function show($id)
     {
-        //
+        return new PlotResource(Plot::findOrFail($id));
     }
 
     /**
@@ -56,9 +86,10 @@ class PlotController extends Controller
      * @param  \App\Models\Plot  $plot
      * @return \Illuminate\Http\Response
      */
-    public function edit(Plot $plot)
+    public function edit($id)
     {
-        //
+        $plot      = Plot::findOrFail($id);
+        return view('plot.edit', compact('plot'));
     }
 
     /**
@@ -68,9 +99,25 @@ class PlotController extends Controller
      * @param  \App\Models\Plot  $plot
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePlotRequest $request, Plot $plot)
+    public function update(UpdatePlotRequest $request, $id)
     {
-        //
+        try{
+            $plot               = Plot::findOrFail($id);
+            $data               = Arr::only($request->validated(), ['name', 'address', 'phoneNumber', 'NumOfPlots']);
+            
+            Plot::updatePlot($id, $data);
+            if ($request->is('api/*')) {
+
+                return $this->show($id);
+            }else{
+                return redirect()->route('plot.index');
+            }
+
+        } catch(\Throwable $th) {
+            Log::debug($th->getMessage());
+            Log::debug($th->getTraceAsString());
+            return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
+        }
     }
 
     /**
@@ -79,8 +126,15 @@ class PlotController extends Controller
      * @param  \App\Models\Plot  $plot
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Plot $plot)
+    public function destroy($id)
     {
-        //
+        try{
+            Plot::destroyPlot($id);
+            return response()->json(['message' => 'Requested Plot is deleted successfully']);
+        } catch(\Throwable $th) {
+            Log::debug($th->getMessage());
+            Log::debug($th->getTraceAsString());
+            return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
+        }
     }
 }
