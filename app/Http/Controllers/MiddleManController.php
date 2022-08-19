@@ -125,13 +125,13 @@ class MiddleManController extends Controller
             $data = Arr::only($request->validated(), ['name', 'address', 'phoneNumber', 'cnic' , 'town_id']);
             $pic  = time().'-picture.'.$request->picture->getClientOriginalExtension();
             if ($request->hasFile('picture')) {
-                unlink(asset('mmd/'.$mmd->picture));
+                // unlink(asset('mmd/'.$mmd->picture));
             }
-            $picture = time().'-picture.'.$reuest->picture->getClientOriginalExtension();
+            $picture = time().'-mmd.'.$request->picture->getClientOriginalExtension();
             $data['picture'] = $picture;
             $request->picture->move(public_path('mmd') , $picture);
 
-            MiddleMan::updateMmd($data);
+            MiddleMan::updateMmd($id , $data);
 
             if ($request->is('api/*')) {
                 return $this->show($id);

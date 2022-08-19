@@ -66,9 +66,9 @@ class MiddleMan extends Model
     }
 
 
-    public static function updateMmd($data){
+    public static function updateMmd($id , $data){
         try {
-            $mmd = MiddleMan::update($data);
+            $mmd = MiddleMan::whereId($id)->update($data);
             return $mmd;
         } catch (\Throwable $th) {
             Log::debug($th->getMessage());
