@@ -52,12 +52,39 @@ class MiddleMan extends Model
     {
         try{
             $mmd  = MiddleMan::create($data);
+            
             return $mmd;
 
+
+
+            
         } catch(\Throwable $th) {
             Log::debug($th->getMessage());
             Log::debug($th->getTraceAsString());
             return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
+        }
+    }
+
+
+    public static function updateMmd($id , $data){
+        try {
+            $mmd = MiddleMan::whereId($id)->update($data);
+            return $mmd;
+        } catch (\Throwable $th) {
+            Log::debug($th->getMessage());
+            Log::debug($th->getTraceAsString());
+            return response()->json(['status' => 'error' , 'Message' => $th->getMessage()]);
+        }
+    }
+
+    public static function destroyMmd($id){
+        try {
+            $mmd = MiddleMan::findOrFail($id);
+            $mmd->delete();
+        } catch (\Throwable $th) {
+            Log::debug($th->getMessage());
+            Log::debug($th->getTraceAsString());
+            return response()->json(['status' => 'error' , 'Message' => $th->getMessage()]);
         }
     }
 
