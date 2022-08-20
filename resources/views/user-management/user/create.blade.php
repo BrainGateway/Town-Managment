@@ -146,29 +146,6 @@
 
                                     <div class="row row-cols-1 row-cols-md-3 row-cols-xl-5">
 
-                                        <div class="form-group mb-5 col-md-4">
-                                            <!--begin::Input row-->
-                                            <div class="d-flex fv-row">
-                                                <!--begin::Radio-->
-                                                <div class="form-check form-check-custom form-check-solid align-end">
-                                                    <!--begin::Input-->
-                                                    <input class="form-check-input me-3 role_permissions" name="user_role[]" type="checkbox" value="only_permissions" id="only_permissions" checked>
-                                                    <!--end::Input-->
-                                                    <!--begin::Label-->
-                                                    <label class="form-check-label" for="only_permissions">
-                                                        <div class="fw-bolder text-gray-800">
-                                                            Only Permissions
-                                                        </div>
-                                                        <div class="text-gray-600">
-                                                            Get only permissions without the Roles
-                                                        </div>
-                                                    </label>
-                                                    <!--end::Label-->
-                                                </div>
-                                                <!--end::Radio-->
-                                            </div>
-                                            <!--end::Input row-->
-                                        </div><!-- col end -->
 
                                         @forelse( $roles as $role )
                                             <div class="form-group mb-5 col-md-4">
@@ -202,22 +179,6 @@
 
 
                                     <!--end::Roles-->
-                                </div>
-                                <!--end::Input group-->
-                            </div><!-- col end -->
-
-                        </div><!-- row end -->
-
-                        <div class="row">
-
-                            <div class=" col-md-12">
-                                <!--begin::Input group-->
-                                <div class="">
-
-                                    <div id="permissions-con">
-                                        @include("user-management.user.include.permissions", compact("permissions", "selectedPermissions"))
-                                    </div>
-
                                 </div>
                                 <!--end::Input group-->
                             </div><!-- col end -->
