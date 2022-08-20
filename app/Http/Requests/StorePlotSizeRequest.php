@@ -13,7 +13,7 @@ class StorePlotSizeRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class StorePlotSizeRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'size'=> 'required', 
+            'dimension' => 'required', 
+            'town_id' => 'required'
         ];
     }
 }
