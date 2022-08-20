@@ -110,7 +110,7 @@
         </div>
        
         
-        @hasanyrole('Super Admin')
+        {{-- @hasanyrole('Super Admin') --}}
 
             <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ Request::is('towns') || Request::is('towns/*') ? 'hover show' : '' }}">
                 <span class="menu-link">
@@ -143,7 +143,7 @@
                     <span class="menu-title">Town Management</span>
                     <span class="menu-arrow"></span>
                 </span>
-                @if(auth()->user()->roles->first()->hasPermissionTo('User'))
+                {{-- @if(auth()->user()->roles->first()->hasPermissionTo('User')) --}}
                     <div class="menu-sub menu-sub-accordion">
                         <div class="menu-item">
                             <a class="menu-link  {{ Request::is('towns') ? 'active' : '' }}" href="{{ route('towns.index') }}">
@@ -162,10 +162,10 @@
                             </a>
                         </div>
                     </div>
-                @endif
+                {{-- @endif --}}
 
             </div>
-        @endhasrole
+        {{-- @endhasrole --}}
 
     </div>
     <!--end::Menu-->

@@ -19,12 +19,12 @@ class UserController extends Controller
 {
     use GeneralTrait;
     use SessionTrait;
-    public function __construct()
-    {
-        $this->middleware('user_has_permission:User-list')->only('index','show');
-        $this->middleware('user_has_permission:User-create')->only('create');
-        $this->middleware('user_has_permission:User-write')->only('edit');
-     }
+    // public function __construct()
+    // {
+    //     $this->middleware('user_has_permission:User-list')->only('index','show');
+    //     $this->middleware('user_has_permission:User-create')->only('create');
+    //     $this->middleware('user_has_permission:User-write')->only('edit');
+    //  }
     /**
      * Display a listing of the resource.
      *
@@ -45,13 +45,8 @@ class UserController extends Controller
         $roles = Role::select('id', 'name')
         ->orderBy("id", "ASC")
         ->get();
-        $permissions = Permission::select('id', 'name')->orderBy("name", "ASC")->get();
-        $selectedPermissions = [];
 
-        $getUserRole = Helpers::loggedInUserRole();
-        $countryIdsList = json_decode( auth()->user()->country_ids );
-
-        return view('user-management.user.create', compact("roles", "permissions", "selectedPermissions", "getUserRole"));
+        return view('user-management.user.create', compact("roles"));
     }
 
     /**
