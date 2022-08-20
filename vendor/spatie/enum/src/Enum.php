@@ -10,7 +10,6 @@ use Spatie\Enum\Exceptions\DuplicateLabelsException;
 use Spatie\Enum\Exceptions\DuplicateValuesException;
 use Spatie\Enum\Exceptions\UnknownEnumMethod;
 use Spatie\Enum\Exceptions\UnknownEnumProperty;
-use Stringable;
 use TypeError;
 
 /**
@@ -20,7 +19,7 @@ use TypeError;
  *
  * @psalm-consistent-constructor
  */
-abstract class Enum implements JsonSerializable, Stringable
+abstract class Enum implements JsonSerializable
 {
     /**
      * @var string|int

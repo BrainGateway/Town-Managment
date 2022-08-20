@@ -1,12 +1,13 @@
 {
     "name": "spatie/enum",
     "description": "PHP Enums",
-    "license": "MIT",
     "keywords": [
         "spatie",
         "enum",
         "enumerable"
     ],
+    "homepage": "https://github.com/spatie/enum",
+    "license": "MIT",
     "authors": [
         {
             "name": "Brent Roose",
@@ -21,14 +22,8 @@
             "role": "Developer"
         }
     ],
-    "homepage": "https://github.com/spatie/enum",
-    "support": {
-        "issues": "https://github.com/spatie/enum/issues",
-        "source": "https://github.com/spatie/enum",
-        "docs": "https://docs.spatie.be/enum"
-    },
     "require": {
-        "php": "^8.0",
+        "php": "^7.4 || ^8.0",
         "ext-json": "*"
     },
     "require-dev": {
@@ -41,6 +36,9 @@
         "fakerphp/faker": "To use the enum faker provider",
         "phpunit/phpunit": "To use the enum assertions"
     },
+    "config": {
+        "sort-packages": true
+    },
     "autoload": {
         "psr-4": {
             "Spatie\\Enum\\": "src"
@@ -51,12 +49,14 @@
             "Spatie\\Enum\\Tests\\": "tests"
         }
     },
-    "config": {
-        "sort-packages": true
-    },
     "scripts": {
         "psalm": "vendor/bin/psalm -c psalm.xml --show-info=true",
         "test": "vendor/bin/phpunit --colors=always",
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "support": {
+        "issues": "https://github.com/spatie/enum/issues",
+        "source": "https://github.com/spatie/enum",
+        "docs": "https://docs.spatie.be/enum"
     }
 }

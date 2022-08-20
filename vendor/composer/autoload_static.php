@@ -4,15 +4,15 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit8316f23fb4bd60f62537a3517303988b
+class ComposerStaticInit40dba7673f0266b2f46b38e8533cd2c8
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
-        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
+        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
@@ -219,8 +219,8 @@ class ComposerStaticInit8316f23fb4bd60f62537a3517303988b
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
         ),
         'ZipStream\\' => 
         array (
@@ -228,9 +228,9 @@ class ComposerStaticInit8316f23fb4bd60f62537a3517303988b
         ),
         'Yajra\\DataTables\\' => 
         array (
-            0 => __DIR__ . '/..' . '/yajra/laravel-datatables-buttons/src',
+            0 => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src',
             1 => __DIR__ . '/..' . '/yajra/laravel-datatables-html/src',
-            2 => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src',
+            2 => __DIR__ . '/..' . '/yajra/laravel-datatables-buttons/src',
         ),
         'Whoops\\' => 
         array (
@@ -390,12 +390,12 @@ class ComposerStaticInit8316f23fb4bd60f62537a3517303988b
         ),
         'Psr\\Log\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/log/src',
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-factory/src',
-            1 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            1 => __DIR__ . '/..' . '/psr/http-factory/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -648,13 +648,11 @@ class ComposerStaticInit8316f23fb4bd60f62537a3517303988b
         'App\\Http\\Controllers\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/DashboardController.php',
         'App\\Http\\Controllers\\DatatableBasicController' => __DIR__ . '/../..' . '/app/Http/Controllers/DatatableBasicController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
-        'App\\Http\\Controllers\\MiddleManController' => __DIR__ . '/../..' . '/app/Http/Controllers/MiddleManController.php',
         'App\\Http\\Controllers\\PermissionController' => __DIR__ . '/../..' . '/app/Http/Controllers/PermissionController.php',
         'App\\Http\\Controllers\\PlotController' => __DIR__ . '/../..' . '/app/Http/Controllers/PlotController.php',
         'App\\Http\\Controllers\\PlotInstallementController' => __DIR__ . '/../..' . '/app/Http/Controllers/PlotInstallementController.php',
         'App\\Http\\Controllers\\PlotSaleController' => __DIR__ . '/../..' . '/app/Http/Controllers/PlotSaleController.php',
         'App\\Http\\Controllers\\PlotSizeController' => __DIR__ . '/../..' . '/app/Http/Controllers/PlotSizeController.php',
-        'App\\Http\\Controllers\\PlotUserController' => __DIR__ . '/../..' . '/app/Http/Controllers/PlotUserController.php',
         'App\\Http\\Controllers\\RoleController' => __DIR__ . '/../..' . '/app/Http/Controllers/RoleController.php',
         'App\\Http\\Controllers\\TownController' => __DIR__ . '/../..' . '/app/Http/Controllers/TownController.php',
         'App\\Http\\Controllers\\TraitClasses\\SessionTrait' => __DIR__ . '/../..' . '/app/Http/Controllers/TraitClasses/SessionTrait.php',
@@ -677,31 +675,27 @@ class ComposerStaticInit8316f23fb4bd60f62537a3517303988b
         'App\\Http\\Requests\\PermissionRequest' => __DIR__ . '/../..' . '/app/Http/Requests/PermissionRequest.php',
         'App\\Http\\Requests\\RoleRequest' => __DIR__ . '/../..' . '/app/Http/Requests/RoleRequest.php',
         'App\\Http\\Requests\\StoreBlockRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StoreBlockRequest.php',
-        'App\\Http\\Requests\\StoreMiddleManRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StoreMiddleManRequest.php',
         'App\\Http\\Requests\\StorePlotInstallementRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StorePlotInstallementRequest.php',
         'App\\Http\\Requests\\StorePlotRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StorePlotRequest.php',
         'App\\Http\\Requests\\StorePlotSaleRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StorePlotSaleRequest.php',
         'App\\Http\\Requests\\StorePlotSizeRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StorePlotSizeRequest.php',
-        'App\\Http\\Requests\\StorePlotUserRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StorePlotUserRequest.php',
         'App\\Http\\Requests\\StoreTownRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StoreTownRequest.php',
         'App\\Http\\Requests\\UpdateBlockRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateBlockRequest.php',
-        'App\\Http\\Requests\\UpdateMiddleManRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateMiddleManRequest.php',
         'App\\Http\\Requests\\UpdatePlotInstallementRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdatePlotInstallementRequest.php',
         'App\\Http\\Requests\\UpdatePlotRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdatePlotRequest.php',
         'App\\Http\\Requests\\UpdatePlotSaleRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdatePlotSaleRequest.php',
         'App\\Http\\Requests\\UpdatePlotSizeRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdatePlotSizeRequest.php',
-        'App\\Http\\Requests\\UpdatePlotUserRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdatePlotUserRequest.php',
         'App\\Http\\Requests\\UpdateTownRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateTownRequest.php',
         'App\\Http\\Requests\\UserPasswordChanged' => __DIR__ . '/../..' . '/app/Http/Requests/UserPasswordChanged.php',
         'App\\Http\\Requests\\UserRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UserRequest.php',
         'App\\Http\\Resources\\BlockResource' => __DIR__ . '/../..' . '/app/Http/Resources/BlockResource.php',
-        'App\\Http\\Resources\\MiddleManResource' => __DIR__ . '/../..' . '/app/Http/Resources/MiddleManResource.php',
+        'App\\Http\\Resources\\PlotResource' => __DIR__ . '/../..' . '/app/Http/Resources/PlotResource.php',
+        'App\\Http\\Resources\\PlotSizeResource' => __DIR__ . '/../..' . '/app/Http/Resources/PlotSizeResource.php',
         'App\\Http\\Resources\\TownResource' => __DIR__ . '/../..' . '/app/Http/Resources/TownResource.php',
         'App\\Models\\Block' => __DIR__ . '/../..' . '/app/Models/Block.php',
         'App\\Models\\Country' => __DIR__ . '/../..' . '/app/Models/Country.php',
         'App\\Models\\Dashboard' => __DIR__ . '/../..' . '/app/Models/Dashboard.php',
         'App\\Models\\DatatableBasic' => __DIR__ . '/../..' . '/app/Models/DatatableBasic.php',
-        'App\\Models\\MiddleMan' => __DIR__ . '/../..' . '/app/Models/MiddleMan.php',
         'App\\Models\\ParentModel' => __DIR__ . '/../..' . '/app/Models/ParentModel.php',
         'App\\Models\\Permission' => __DIR__ . '/../..' . '/app/Models/Permission.php',
         'App\\Models\\Plot' => __DIR__ . '/../..' . '/app/Models/Plot.php',
@@ -5359,14 +5353,17 @@ class ComposerStaticInit8316f23fb4bd60f62537a3517303988b
         'Psr\\Http\\Message\\UploadedFileInterface' => __DIR__ . '/..' . '/psr/http-message/src/UploadedFileInterface.php',
         'Psr\\Http\\Message\\UriFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/UriFactoryInterface.php',
         'Psr\\Http\\Message\\UriInterface' => __DIR__ . '/..' . '/psr/http-message/src/UriInterface.php',
-        'Psr\\Log\\AbstractLogger' => __DIR__ . '/..' . '/psr/log/src/AbstractLogger.php',
-        'Psr\\Log\\InvalidArgumentException' => __DIR__ . '/..' . '/psr/log/src/InvalidArgumentException.php',
-        'Psr\\Log\\LogLevel' => __DIR__ . '/..' . '/psr/log/src/LogLevel.php',
-        'Psr\\Log\\LoggerAwareInterface' => __DIR__ . '/..' . '/psr/log/src/LoggerAwareInterface.php',
-        'Psr\\Log\\LoggerAwareTrait' => __DIR__ . '/..' . '/psr/log/src/LoggerAwareTrait.php',
-        'Psr\\Log\\LoggerInterface' => __DIR__ . '/..' . '/psr/log/src/LoggerInterface.php',
-        'Psr\\Log\\LoggerTrait' => __DIR__ . '/..' . '/psr/log/src/LoggerTrait.php',
-        'Psr\\Log\\NullLogger' => __DIR__ . '/..' . '/psr/log/src/NullLogger.php',
+        'Psr\\Log\\AbstractLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/AbstractLogger.php',
+        'Psr\\Log\\InvalidArgumentException' => __DIR__ . '/..' . '/psr/log/Psr/Log/InvalidArgumentException.php',
+        'Psr\\Log\\LogLevel' => __DIR__ . '/..' . '/psr/log/Psr/Log/LogLevel.php',
+        'Psr\\Log\\LoggerAwareInterface' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerAwareInterface.php',
+        'Psr\\Log\\LoggerAwareTrait' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerAwareTrait.php',
+        'Psr\\Log\\LoggerInterface' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerInterface.php',
+        'Psr\\Log\\LoggerTrait' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerTrait.php',
+        'Psr\\Log\\NullLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/NullLogger.php',
+        'Psr\\Log\\Test\\DummyTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/DummyTest.php',
+        'Psr\\Log\\Test\\LoggerInterfaceTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
+        'Psr\\Log\\Test\\TestLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/TestLogger.php',
         'Psr\\SimpleCache\\CacheException' => __DIR__ . '/..' . '/psr/simple-cache/src/CacheException.php',
         'Psr\\SimpleCache\\CacheInterface' => __DIR__ . '/..' . '/psr/simple-cache/src/CacheInterface.php',
         'Psr\\SimpleCache\\InvalidArgumentException' => __DIR__ . '/..' . '/psr/simple-cache/src/InvalidArgumentException.php',
@@ -6128,6 +6125,7 @@ class ComposerStaticInit8316f23fb4bd60f62537a3517303988b
         'Symfony\\Component\\EventDispatcher\\EventSubscriberInterface' => __DIR__ . '/..' . '/symfony/event-dispatcher/EventSubscriberInterface.php',
         'Symfony\\Component\\EventDispatcher\\GenericEvent' => __DIR__ . '/..' . '/symfony/event-dispatcher/GenericEvent.php',
         'Symfony\\Component\\EventDispatcher\\ImmutableEventDispatcher' => __DIR__ . '/..' . '/symfony/event-dispatcher/ImmutableEventDispatcher.php',
+        'Symfony\\Component\\EventDispatcher\\LegacyEventDispatcherProxy' => __DIR__ . '/..' . '/symfony/event-dispatcher/LegacyEventDispatcherProxy.php',
         'Symfony\\Component\\Finder\\Comparator\\Comparator' => __DIR__ . '/..' . '/symfony/finder/Comparator/Comparator.php',
         'Symfony\\Component\\Finder\\Comparator\\DateComparator' => __DIR__ . '/..' . '/symfony/finder/Comparator/DateComparator.php',
         'Symfony\\Component\\Finder\\Comparator\\NumberComparator' => __DIR__ . '/..' . '/symfony/finder/Comparator/NumberComparator.php',
@@ -6547,7 +6545,6 @@ class ComposerStaticInit8316f23fb4bd60f62537a3517303988b
         'Symfony\\Component\\String\\Slugger\\AsciiSlugger' => __DIR__ . '/..' . '/symfony/string/Slugger/AsciiSlugger.php',
         'Symfony\\Component\\String\\Slugger\\SluggerInterface' => __DIR__ . '/..' . '/symfony/string/Slugger/SluggerInterface.php',
         'Symfony\\Component\\String\\UnicodeString' => __DIR__ . '/..' . '/symfony/string/UnicodeString.php',
-        'Symfony\\Component\\Translation\\CatalogueMetadataAwareInterface' => __DIR__ . '/..' . '/symfony/translation/CatalogueMetadataAwareInterface.php',
         'Symfony\\Component\\Translation\\Catalogue\\AbstractOperation' => __DIR__ . '/..' . '/symfony/translation/Catalogue/AbstractOperation.php',
         'Symfony\\Component\\Translation\\Catalogue\\MergeOperation' => __DIR__ . '/..' . '/symfony/translation/Catalogue/MergeOperation.php',
         'Symfony\\Component\\Translation\\Catalogue\\OperationInterface' => __DIR__ . '/..' . '/symfony/translation/Catalogue/OperationInterface.php',
@@ -6609,7 +6606,6 @@ class ComposerStaticInit8316f23fb4bd60f62537a3517303988b
         'Symfony\\Component\\Translation\\Loader\\QtFileLoader' => __DIR__ . '/..' . '/symfony/translation/Loader/QtFileLoader.php',
         'Symfony\\Component\\Translation\\Loader\\XliffFileLoader' => __DIR__ . '/..' . '/symfony/translation/Loader/XliffFileLoader.php',
         'Symfony\\Component\\Translation\\Loader\\YamlFileLoader' => __DIR__ . '/..' . '/symfony/translation/Loader/YamlFileLoader.php',
-        'Symfony\\Component\\Translation\\LocaleSwitcher' => __DIR__ . '/..' . '/symfony/translation/LocaleSwitcher.php',
         'Symfony\\Component\\Translation\\LoggingTranslator' => __DIR__ . '/..' . '/symfony/translation/LoggingTranslator.php',
         'Symfony\\Component\\Translation\\MessageCatalogue' => __DIR__ . '/..' . '/symfony/translation/MessageCatalogue.php',
         'Symfony\\Component\\Translation\\MessageCatalogueInterface' => __DIR__ . '/..' . '/symfony/translation/MessageCatalogueInterface.php',
@@ -6710,6 +6706,7 @@ class ComposerStaticInit8316f23fb4bd60f62537a3517303988b
         'Symfony\\Contracts\\Service\\ServiceSubscriberTrait' => __DIR__ . '/..' . '/symfony/service-contracts/ServiceSubscriberTrait.php',
         'Symfony\\Contracts\\Service\\Test\\ServiceLocatorTest' => __DIR__ . '/..' . '/symfony/service-contracts/Test/ServiceLocatorTest.php',
         'Symfony\\Contracts\\Translation\\LocaleAwareInterface' => __DIR__ . '/..' . '/symfony/translation-contracts/LocaleAwareInterface.php',
+        'Symfony\\Contracts\\Translation\\Test\\TranslatorTest' => __DIR__ . '/..' . '/symfony/translation-contracts/Test/TranslatorTest.php',
         'Symfony\\Contracts\\Translation\\TranslatableInterface' => __DIR__ . '/..' . '/symfony/translation-contracts/TranslatableInterface.php',
         'Symfony\\Contracts\\Translation\\TranslatorInterface' => __DIR__ . '/..' . '/symfony/translation-contracts/TranslatorInterface.php',
         'Symfony\\Contracts\\Translation\\TranslatorTrait' => __DIR__ . '/..' . '/symfony/translation-contracts/TranslatorTrait.php',
@@ -7038,10 +7035,10 @@ class ComposerStaticInit8316f23fb4bd60f62537a3517303988b
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit8316f23fb4bd60f62537a3517303988b::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit8316f23fb4bd60f62537a3517303988b::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit8316f23fb4bd60f62537a3517303988b::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit8316f23fb4bd60f62537a3517303988b::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit40dba7673f0266b2f46b38e8533cd2c8::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit40dba7673f0266b2f46b38e8533cd2c8::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit40dba7673f0266b2f46b38e8533cd2c8::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit40dba7673f0266b2f46b38e8533cd2c8::$classMap;
 
         }, null, ClassLoader::class);
     }
