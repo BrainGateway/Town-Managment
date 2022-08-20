@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PlotType;
-use App\Http\Requests\StorePlotTypeRequest;
+use App\Http\Requests\PlotTypeRequest;
 use App\Http\Requests\UpdatePlotTypeRequest;
 use App\Http\Resources\PlotTypeResource;
 use Facade\FlareClient\Http\Response;
@@ -18,7 +18,7 @@ class PlotTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
             if ($request->is('api/*')) {
@@ -67,6 +67,7 @@ class PlotTypeController extends Controller
             }else{
                 return redirect()->route('plot-type.index');
             }
+            
         } catch (\Throwable $th) {
             Log::debug($th->getMessage());
             Log::debug($th->getTraceAsString());

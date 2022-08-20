@@ -50,3 +50,5 @@ class CreatePlotSalesTable extends Migration
         Schema::dropIfExists('plot_sales');
     }
 }
+
+

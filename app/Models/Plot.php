@@ -4,11 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
+use Facade\FlareClient\Http\Response;
+
 
 class Plot extends Model
 {
     use HasFactory;
-
+    protected $table = 'number_plots';
     protected $fillable = [
         'plot_number',
         'plot_type',
@@ -40,15 +43,15 @@ class Plot extends Model
 
     public static function createplot($data)
     {
-        try{
+        // try{
             $plot  = Plot::create($data);
             return $plot;
 
-        } catch(\Throwable $th) {
-            Log::debug($th->getMessage());
-            Log::debug($th->getTraceAsString());
-            return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
-        }
+        // } catch(\Throwable $th) {
+        //     Log::debug($th->getMessage());
+        //     Log::debug($th->getTraceAsString());
+        //     return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
+        // }
     }
 
     public static function updatePlot($id, $data)

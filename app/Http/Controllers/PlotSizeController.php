@@ -1,10 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
 
 use App\Models\PlotSize;
 use App\Http\Requests\StorePlotSizeRequest;
 use App\Http\Requests\UpdatePlotSizeRequest;
+use App\Http\Resources\PlotSizeResource;
+use Facade\FlareClient\Http\Response;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 
 class PlotSizeController extends Controller
 {
@@ -13,11 +18,11 @@ class PlotSizeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         try{
             if ($request->is('api/*')) {
-                return PlotSizeResource::collection(Plot::all());
+                return PlotSizeResource::collection(PlotSize::all());
             }else{
                 if ($request->ajax()) {
                     $plotSize =  Plot::indexTown();
@@ -54,7 +59,7 @@ class PlotSizeController extends Controller
     {
         try{
             $data               = Arr::only($request->validated(), ['size', 'dimension' , 'town_id']);
-            $plotSize   = PlotSize::createplot($data);
+            $plotSize   = PlotSize::createPlotSize($data);
 
             if ($request->is('api/*')) {
                 return $this->show($plotSize->id);

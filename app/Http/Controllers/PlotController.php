@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Plot;
 use App\Http\Requests\StorePlotRequest;
 use App\Http\Requests\UpdatePlotRequest;
+use App\Http\Resources\PlotResource;
+use Facade\FlareClient\Http\Response;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
 
 class PlotController extends Controller
 {
@@ -13,11 +18,11 @@ class PlotController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         try{
             if ($request->is('api/*')) {
-                return TownResource::collection(Plot::all());
+                return PlotResource::collection(Plot::all());
             }else{
                 if ($request->ajax()) {
                     $plots =  Plot::indexTown();
@@ -103,9 +108,10 @@ class PlotController extends Controller
     {
         try{
             $plot               = Plot::findOrFail($id);
-            $data               = Arr::only($request->validated(), ['name', 'address', 'phoneNumber', 'NumOfPlots']);
+            $data               = Arr::only($request->validated(), ['plot_number', 'plot_type', 'size', 'dimension' , 'town_id']);
             
             Plot::updatePlot($id, $data);
+
             if ($request->is('api/*')) {
 
                 return $this->show($id);

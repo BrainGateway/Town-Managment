@@ -2,7 +2,11 @@
 
 use App\Http\Controllers\TownController;
 use App\Http\Controllers\BlockController;
-use App\Http\Controllers\MiddleManController;
+use App\Http\Controllers\PlotTypeController;
+use App\Http\Controllers\PlotSizeController;
+
+use App\Http\Controllers\PlotController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,4 +28,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('towns',                TownController::class);
 Route::resource('blocks',               BlockController::class);
-Route::resource('mmds',                 MiddleManController::class);
+Route::resource('plot-sizes',                 PlotSizeController::class);
+Route::resource('plots',                 PlotController::class);

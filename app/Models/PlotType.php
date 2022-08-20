@@ -38,7 +38,6 @@ class PlotType extends Model
         try {
             
             $plotType = PlotType::create($data);
-           
             return $plotType ; 
         } catch (\Throwable $th) {
             Log::debug($th->getMessage());

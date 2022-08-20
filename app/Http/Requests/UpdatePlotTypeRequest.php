@@ -13,7 +13,7 @@ class UpdatePlotTypeRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class UpdatePlotTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' =>'required',
+            'town_id' =>'required',
         ];
     }
 }
