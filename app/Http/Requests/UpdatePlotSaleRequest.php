@@ -13,7 +13,7 @@ class UpdatePlotSaleRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,23 @@ class UpdatePlotSaleRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'plot_number'              => 'required:plot_sales,plot_number',
+            'size'                     => 'required',
+            'dimension'                => 'required',
+            'form_number'              => 'required',
+            'plot_price'               => 'required',
+            'discount'                 => 'required',
+            'registration_charges'     => 'required',
+            'deal_price'               => 'required',
+            'installments'             => 'required',
+            'deal_validity'            => 'required',
+            'sale_man'                 => 'required',
+            'mmd'                      => '',
+            'register_only'            => '',
+            'town_id'                  => 'required',
+            'block_id'                 => '',
+            'owner_plot'               => 'required',
+            'nominee_owner_plot'       => 'required',
         ];
     }
 }

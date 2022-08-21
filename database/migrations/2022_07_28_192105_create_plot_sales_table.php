@@ -26,8 +26,8 @@ class CreatePlotSalesTable extends Migration
             $table->integer('installments');
             $table->integer('deal_validity');
             $table->string('sale_man');
-            $table->integer('mmd');
-            $table->integer('register_only');
+            $table->integer('mmd')->nullable();
+            $table->integer('register_only')->nullable();
             $table->unsignedBigInteger('town_id')->nullable();
             $table->foreign('town_id')->references('id')->on('towns');
             $table->unsignedBigInteger('block_id')->nullable();

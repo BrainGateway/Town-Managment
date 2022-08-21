@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\PlotSale;
 use App\Http\Requests\StorePlotSaleRequest;
 use App\Http\Requests\UpdatePlotSaleRequest;
+use App\Http\Resources\PlotSaleResource;
+use Facade\FlareClient\Http\Response;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
 
 class PlotSaleController extends Controller
 {
@@ -13,9 +18,24 @@ class PlotSaleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        try {
+            if ($request->is('api/*')) {
+                return PlotSaleResource::collection(PlotSale::all());
+            }else {
+                if ($request->ajax()) {
+                    $plotSale = PlotSale::indexPlotSale();
+                    $plotSalesDatatable = ($plotSale) ? $plotSale : [] ;
+                    return $plotSalesDatatable;
+                }
+                return view('plot-sale.index');
+            }
+        } catch (\Throwable $th) {
+            Log::debug($th->getMessage());
+            Log::debug($th->getTraceAsString());
+            return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
+        }
     }
 
     /**
@@ -25,7 +45,7 @@ class PlotSaleController extends Controller
      */
     public function create()
     {
-        //
+        return view('plot-sale.create');
     }
 
     /**
@@ -36,7 +56,20 @@ class PlotSaleController extends Controller
      */
     public function store(StorePlotSaleRequest $request)
     {
-        //
+        try {
+            $data = Arr::only($request->validated() , ['plot_number','size','dimension','form_number','plot_price','discount','registration_charges','deal_price','installments','deal_validity','sale_man','mmd','register_only','town_id','block_id','owner_plot','nominee_owner_plot' ]);
+            $plotSale = PlotSale::createPloteSale($data);
+            if ($request->is('api/*')) {
+                return $this->show($plotSale->id);
+            } else {
+                return redirect()->route('plot-sale.index');
+            }
+            
+        } catch (\Throwable $th) {
+            Log::debug($th->getMessage());
+            Log::debug($th->getTraceAsString());
+            return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
+        }
     }
 
     /**
@@ -45,9 +78,10 @@ class PlotSaleController extends Controller
      * @param  \App\Models\PlotSale  $plotSale
      * @return \Illuminate\Http\Response
      */
-    public function show(PlotSale $plotSale)
+    public function show($id)
     {
-        //
+        return new PlotSaleResource(PlotSale::findOrFail($id));
+
     }
 
     /**
@@ -58,7 +92,8 @@ class PlotSaleController extends Controller
      */
     public function edit(PlotSale $plotSale)
     {
-        //
+        $plotSale = PlotSale::findOrFail($id);
+        return view('plot-sale.edit');
     }
 
     /**
@@ -68,9 +103,26 @@ class PlotSaleController extends Controller
      * @param  \App\Models\PlotSale  $plotSale
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePlotSaleRequest $request, PlotSale $plotSale)
+    public function update(UpdatePlotSaleRequest $request, $id)
     {
-        //
+        try{
+            $plotSale               = PlotSale::findOrFail($id);
+            $data                   = Arr::only($request->validated(), ['plot_number','size','dimension','form_number','plot_price','discount','registration_charges','deal_price','installments','deal_validity','sale_man','mmd','register_only','town_id','block_id','owner_plot','nominee_owner_plot' ]);
+            
+            PlotSale::updatePlotSale($id, $data);
+
+            if ($request->is('api/*')) {
+
+                return $this->show($id);
+            }else{
+                return redirect()->route('plot-sale.index');
+            }
+
+        } catch(\Throwable $th) {
+            Log::debug($th->getMessage());
+            Log::debug($th->getTraceAsString());
+            return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
+        }
     }
 
     /**
@@ -79,8 +131,15 @@ class PlotSaleController extends Controller
      * @param  \App\Models\PlotSale  $plotSale
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PlotSale $plotSale)
+    public function destroy($id)
     {
-        //
+        try{
+            PlotSale::destroyPlotSale($id);
+            return response()->json(['message' => 'Requested Plot Sale is deleted successfully']);
+        } catch(\Throwable $th) {
+            Log::debug($th->getMessage());
+            Log::debug($th->getTraceAsString());
+            return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
+        }
     }
 }
