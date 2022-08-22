@@ -7,7 +7,11 @@ use App\Helpers\S3Helper;
 
 use App\Http\Controllers\TownController;
 use App\Http\Controllers\PlotTypeController;
+use App\Http\Controllers\PlotSizeController;
 use App\Http\Controllers\PlotController;
+use App\Http\Controllers\PlotSalseController;
+
+
 
 
 /*
@@ -56,5 +60,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('towns',                        TownController::class);
     Route::resource('plot-types',                   PlotTypeController::class);
     Route::resource('plots',                        PlotController::class);
+    Route::resource('size-dimensions',              PlotSizeController::class);
+    Route::resource('plot-sales',                   PlotSalseController::class);
+
 
 });

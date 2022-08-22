@@ -24,9 +24,8 @@ class StorePlotSizeRequest extends FormRequest
     public function rules()
     {
         return [
-            'size'=> 'required', 
-            'dimension' => 'required', 
-            'town_id' => 'required'
+            'size'=> 'required',
+            'dimension' => 'required',
         ];
     }
 }

@@ -26,7 +26,7 @@ class PlotSizeController extends Controller
                 return PlotSizeResource::collection(PlotSize::all());
             }else{
                 if ($request->ajax()) {
-                    $plotSize =  Plot::indexTown();
+                    $plotSize =  PlotSize::indexPlotSize();
                     $plotSizeDatatable = !empty($plotSize) ? $plotSize : [];
                     return $plotSizeDatatable;
                  }
@@ -65,7 +65,7 @@ class PlotSizeController extends Controller
             if ($request->is('api/*')) {
                 return $this->show($plotSize->id);
             }else{
-                return redirect()->route('plot-size.index');
+                return redirect()->route('size-dimensions.index');
             }
         } catch(\Throwable $th) {
             Log::debug($th->getMessage());
@@ -109,13 +109,13 @@ class PlotSizeController extends Controller
         try{
             $plotSize               = plotSize::findOrFail($id);
             $data               = Arr::only($request->validated(), ['size', 'dimension' , 'town_id']);
-            
+
             plotSize::updatePlotSize($id, $data);
             if ($request->is('api/*')) {
 
                 return $this->show($id);
             }else{
-                return redirect()->route('plot-size.index');
+                return redirect()->route('size-dimensions.index');
             }
 
         } catch(\Throwable $th) {
@@ -131,7 +131,7 @@ class PlotSizeController extends Controller
      * @param  \App\Models\PlotSize  $plotSize
      * @return \Illuminate\Http\Response
      */
-    public function destroyPlotSize($id)
+    public function destroy($id)
     {
         try{
             PlotSize::destroyPlotSize($id);
