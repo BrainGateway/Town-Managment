@@ -9,6 +9,7 @@ use App\Models\Role;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Notifications\RegisterUSer;
 
 class RegisterController extends Controller
 {
@@ -74,6 +75,8 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
         $user->assignRole(Role::whereName('Town Admin')->first());
+
+        $user->notify(new RegisterUSer());
         return $user;
     }
 }

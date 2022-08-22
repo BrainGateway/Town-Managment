@@ -4,31 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Log;
-use Yajra\DataTables\Facades\DataTables;
 
-class Block extends Model
+class PlotType extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
-        'address',
-        'NumOfPlots',
-        'town_id',
-        'logo'
+        'town_id'
     ];
-    
+
+
     public static function indexBlock(){
-        $data = Block::query();
+        $data = PlotType::query();
         return DataTables::of($data)
         ->addIndexColumn()
-        ->addColumn('logo', function($row){
-            $html = '<img src="'.asset("assets/images/".$row->logo).'" class=""   height = "55px" alt="Responsive image">';
-            return $html;
-        })
         ->addColumn('action', function ($row) {
-            $html = '<a href="' . route("block.edit", $row->id) . '" class="btn-sm btn btn-clean btn-icon btn-light-primary me-2 p-0 " data-type="edit" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit this Company">
+            $html = '<a href="' . route("plotType.edit", $row->id) . '" class="btn-sm btn btn-clean btn-icon btn-light-primary me-2 p-0 " data-type="edit" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit this Company">
                             <i class="fa fa-pencil-alt"></i>
                         </a>';
             $html .= '<a href="javascript:void(0);" class="btn-sm btn btn-clean btn-icon btn-light-danger p-0 delete-action" data-delete="' . $row->id . '" title="delete details" data-type="edit" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete this Company">
@@ -37,17 +29,16 @@ class Block extends Model
 
             return $html;
         })
-        ->rawColumns(['action' , 'logo'])
+        ->rawColumns(['action'])
         ->make(true);
 
     }
-    public static function createBlock($data){
+    public static function createPlotType($data){
 
         try {
             
-            $block = Block::create($data);
-           
-            return $block ; 
+            $plotType = PlotType::create($data);
+            return $plotType ; 
         } catch (\Throwable $th) {
             Log::debug($th->getMessage());
             Log::debug($th->getTraceAsString());
@@ -58,10 +49,10 @@ class Block extends Model
     }
 
 
-    public static function updateBlock($id , $data){
+    public static function updatePlotType($id , $data){
         try {
             
-            Block::whereId($id)->update($data);
+            PlotType::whereId($id)->update($data);
         } catch (\Throwable $th) {
             Log::debug($th->getMessage());
             Log::debug($th->getTraceAsString());
@@ -69,15 +60,16 @@ class Block extends Model
         }
     }
 
-    public static function destroyBlock($id){
+    public static function destroyPlotType($id){
         try {
-            $block = Block::findOrFail($id);
-            $block->delete();
+            $plotType = PlotType::findOrFail($id);
+            $plotType->delete();
         } catch (\Throwable $th) {
             Log::debug($th->getMessage());
             Log::debug($th->getTraceAsString());
             return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
         }
     }
-}
 
+
+}

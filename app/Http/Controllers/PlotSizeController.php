@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\PlotSize;
 use App\Http\Requests\StorePlotSizeRequest;
 use App\Http\Requests\UpdatePlotSizeRequest;
+use App\Http\Resources\PlotSizeResource;
+use Facade\FlareClient\Http\Response;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
+
 
 class PlotSizeController extends Controller
 {
@@ -13,18 +19,18 @@ class PlotSizeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         try{
             if ($request->is('api/*')) {
-                return PlotSizeResource::collection(Plot::all());
+                return PlotSizeResource::collection(PlotSize::all());
             }else{
                 if ($request->ajax()) {
                     $plotSize =  Plot::indexTown();
                     $plotSizeDatatable = !empty($plotSize) ? $plotSize : [];
                     return $plotSizeDatatable;
                  }
-                return view('plotSize.index');
+                return view('plot-size.index');
             }
         } catch(\Throwable $th) {
             Log::debug($th->getMessage());
@@ -40,7 +46,7 @@ class PlotSizeController extends Controller
      */
     public function create()
     {
-        return view('plotSize.create');
+        return view('plot-size.create');
 
     }
 
@@ -54,12 +60,12 @@ class PlotSizeController extends Controller
     {
         try{
             $data               = Arr::only($request->validated(), ['size', 'dimension' , 'town_id']);
-            $plotSize   = PlotSize::createplot($data);
+            $plotSize   = PlotSize::createPlotSize($data);
 
             if ($request->is('api/*')) {
                 return $this->show($plotSize->id);
             }else{
-                return redirect()->route('plotSize.index');
+                return redirect()->route('plot-size.index');
             }
         } catch(\Throwable $th) {
             Log::debug($th->getMessage());
@@ -88,7 +94,7 @@ class PlotSizeController extends Controller
     public function edit($id)
     {
         $plotSize      = PlotSize::findOrFail($id);
-        return view('plotSize.edit', compact('plotSize'));
+        return view('plot-size.edit', compact('plotSize'));
     }
 
     /**
@@ -109,7 +115,7 @@ class PlotSizeController extends Controller
 
                 return $this->show($id);
             }else{
-                return redirect()->route('plotSize.index');
+                return redirect()->route('plot-size.index');
             }
 
         } catch(\Throwable $th) {

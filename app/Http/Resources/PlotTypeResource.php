@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PlotSizeResource extends JsonResource
+class PlotTypeResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,9 +16,8 @@ class PlotSizeResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'size'                      => $this->size,
-            'dimension'                 => $this->dimension,
-            'town_id'                   => $this->town_id,
+            'name' => $this->name ,
+            'town_id' => $this->town_id,
         ];
     }
 }

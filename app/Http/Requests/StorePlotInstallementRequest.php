@@ -13,7 +13,7 @@ class StorePlotInstallementRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,17 @@ class StorePlotInstallementRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'payment_type'          => 'required',
+            'deposit_amount'        => 'required',
+            'slip_number'           => 'required',
+            'auto_slip_number'      => 'required',
+            'payment_method'        => 'required',
+            'deposit_slip'          => 'required',
+            'town_id'               => 'required',
+            'number_of_plot'        => 'required',
+            'owner_plot'            => 'required',
         ];
     }
 }
+
+   
