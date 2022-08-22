@@ -41,3 +41,5 @@ class CreatePlotInstallementsTable extends Migration
         Schema::dropIfExists('plot_installements');
     }
 }
+
+

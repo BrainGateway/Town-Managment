@@ -15,6 +15,7 @@ class PlotSizeResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'size'                      => $this->size,
             'dimension'                 => $this->dimension,
             'town_id'                   => $this->town_id,

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
 
 use App\Models\PlotSize;
 use App\Http\Requests\StorePlotSizeRequest;
@@ -10,6 +9,8 @@ use App\Http\Resources\PlotSizeResource;
 use Facade\FlareClient\Http\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
+
 
 class PlotSizeController extends Controller
 {
@@ -29,7 +30,7 @@ class PlotSizeController extends Controller
                     $plotSizeDatatable = !empty($plotSize) ? $plotSize : [];
                     return $plotSizeDatatable;
                  }
-                return view('plotSize.index');
+                return view('plot-size.index');
             }
         } catch(\Throwable $th) {
             Log::debug($th->getMessage());
@@ -45,7 +46,7 @@ class PlotSizeController extends Controller
      */
     public function create()
     {
-        return view('plotSize.create');
+        return view('plot-size.create');
 
     }
 
@@ -64,7 +65,7 @@ class PlotSizeController extends Controller
             if ($request->is('api/*')) {
                 return $this->show($plotSize->id);
             }else{
-                return redirect()->route('plotSize.index');
+                return redirect()->route('plot-size.index');
             }
         } catch(\Throwable $th) {
             Log::debug($th->getMessage());
@@ -93,7 +94,7 @@ class PlotSizeController extends Controller
     public function edit($id)
     {
         $plotSize      = PlotSize::findOrFail($id);
-        return view('plotSize.edit', compact('plotSize'));
+        return view('plot-size.edit', compact('plotSize'));
     }
 
     /**
@@ -114,7 +115,7 @@ class PlotSizeController extends Controller
 
                 return $this->show($id);
             }else{
-                return redirect()->route('plotSize.index');
+                return redirect()->route('plot-size.index');
             }
 
         } catch(\Throwable $th) {

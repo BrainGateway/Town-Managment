@@ -7,6 +7,7 @@ use App\Http\Controllers\PlotSizeController;
 
 use App\Http\Controllers\PlotController;
 use App\Http\Controllers\PlotSaleController;
+use App\Http\Controllers\PlotInstallementController;
 
 
 use Illuminate\Http\Request;
@@ -33,3 +34,4 @@ Route::resource('blocks',               BlockController::class);
 Route::resource('plot-sizes',                 PlotSizeController::class);
 Route::resource('plots',                 PlotController::class);
 Route::resource('plot-sales',                 PlotSaleController::class);
+Route::resource('plot-installements',                 PlotInstallementController::class);

@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\PlotInstallement;
 use App\Http\Requests\StorePlotInstallementRequest;
 use App\Http\Requests\UpdatePlotInstallementRequest;
+use App\Http\Resources\PlotInstallementResource;
+use Facade\FlareClient\Http\Response;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
 
 class PlotInstallementController extends Controller
 {
@@ -13,9 +18,24 @@ class PlotInstallementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        try{
+            if ($request->is('api/*')) {
+                return PlotInstallementResource::collection(PlotInstallement::all());
+            }else{
+                if ($request->ajax()) {
+                    $plotInstallement =  PlotInstallement::indexTown();
+                    $plotInstallementDatatable = !empty($plotInstallement) ? $plotInstallement : [];
+                    return $plotInstallementDatatable;
+                 }
+                return view('plot-installement.index');
+            }
+        } catch(\Throwable $th) {
+            Log::debug($th->getMessage());
+            Log::debug($th->getTraceAsString());
+            return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
+        }
     }
 
     /**
@@ -25,7 +45,7 @@ class PlotInstallementController extends Controller
      */
     public function create()
     {
-        //
+        return view('plot-installement.create');
     }
 
     /**
@@ -37,6 +57,21 @@ class PlotInstallementController extends Controller
     public function store(StorePlotInstallementRequest $request)
     {
         //
+
+        try{
+            $data               = Arr::only($request->validated(), ['payment_type','deposit_amount','slip_number','auto_slip_number','payment_method','deposit_slip','town_id','number_of_plot','owner_plot']);
+            $plotInstallement   = PlotInstallement::createPlotInstallement($data);
+
+            if ($request->is('api/*')) {
+                return $this->show($plotInstallement->id);
+            }else{
+                return redirect()->route('plot-installement.index');
+            }
+        } catch(\Throwable $th) {
+            Log::debug($th->getMessage());
+            Log::debug($th->getTraceAsString());
+            return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
+        }
     }
 
     /**
@@ -45,9 +80,10 @@ class PlotInstallementController extends Controller
      * @param  \App\Models\PlotInstallement  $plotInstallement
      * @return \Illuminate\Http\Response
      */
-    public function show(PlotInstallement $plotInstallement)
+    public function show($id)
     {
-        //
+        return new PlotInstallementResource(PlotInstallement::findOrFail($id));
+
     }
 
     /**
@@ -56,9 +92,10 @@ class PlotInstallementController extends Controller
      * @param  \App\Models\PlotInstallement  $plotInstallement
      * @return \Illuminate\Http\Response
      */
-    public function edit(PlotInstallement $plotInstallement)
+    public function edit($id)
     {
-        //
+        $plotInstallement      = PlotInstallement::findOrFail($id);
+        return view('plot-installement.edit', compact('plotInstallement'));
     }
 
     /**
@@ -68,9 +105,25 @@ class PlotInstallementController extends Controller
      * @param  \App\Models\PlotInstallement  $plotInstallement
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePlotInstallementRequest $request, PlotInstallement $plotInstallement)
+    public function update(UpdatePlotInstallementRequest $request, $id)
     {
-        //
+        try{
+            $plotInstallement               = plotInstallement::findOrFail($id);
+            $data                           = Arr::only($request->validated(), ['payment_type','deposit_amount','slip_number','auto_slip_number','payment_method','deposit_slip','town_id','number_of_plot','owner_plot']);
+            
+            plotInstallement::updatePlotInstallement($id, $data);
+            if ($request->is('api/*')) {
+
+                return $this->show($id);
+            }else{
+                return redirect()->route('plot-installement.index');
+            }
+
+        } catch(\Throwable $th) {
+            Log::debug($th->getMessage());
+            Log::debug($th->getTraceAsString());
+            return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
+        }
     }
 
     /**
@@ -79,8 +132,15 @@ class PlotInstallementController extends Controller
      * @param  \App\Models\PlotInstallement  $plotInstallement
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PlotInstallement $plotInstallement)
+    public function destroy($id)
     {
-        //
+        try{
+            PlotInstallement::destroyPlotInstallement($id);
+            return response()->json(['message' => 'Requested Plot Installement is deleted successfully']);
+        } catch(\Throwable $th) {
+            Log::debug($th->getMessage());
+            Log::debug($th->getTraceAsString());
+            return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
+        }
     }
 }

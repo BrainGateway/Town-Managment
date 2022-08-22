@@ -29,7 +29,7 @@ class PlotController extends Controller
                     $plotsDatatable = !empty($plots) ? $plots : [];
                     return $plotsDatatable;
                  }
-                return view('plot.index');
+                return view('plot-number.index');
             }
         } catch(\Throwable $th) {
             Log::debug($th->getMessage());
@@ -45,7 +45,7 @@ class PlotController extends Controller
      */
     public function create()
     {
-        return view('plot.create');
+        return view('plot-number.create');
     }
 
     /**
@@ -65,7 +65,7 @@ class PlotController extends Controller
             if ($request->is('api/*')) {
                 return $this->show($plot->id);
             }else{
-                return redirect()->route('plot.index');
+                return redirect()->route('plot-number.index');
             }
         } catch(\Throwable $th) {
             Log::debug($th->getMessage());
@@ -94,7 +94,7 @@ class PlotController extends Controller
     public function edit($id)
     {
         $plot      = Plot::findOrFail($id);
-        return view('plot.edit', compact('plot'));
+        return view('plot-number.edit', compact('plot'));
     }
 
     /**
@@ -116,7 +116,7 @@ class PlotController extends Controller
 
                 return $this->show($id);
             }else{
-                return redirect()->route('plot.index');
+                return redirect()->route('plot-number.index');
             }
 
         } catch(\Throwable $th) {
