@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<!--begin::Post-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-{{--  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>  --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    {{--  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>  --}}
 
 
 
@@ -18,181 +17,155 @@
         border: 1px dashed #F1416C;
         color: #F1416C;
     }
-</style>
-<div class="post fs-base d-flex flex-column-fluid" id="kt_post">
+    </style>
 
-    <div id="kt_content_container" class="container-fluid">
+<div class="container-fluid" id="app">
 
+    <form id="kt_modal_update_plot_form" method="post" action="{{ route('plots.update', $plot->id)}}" autocomplete="off" enctype="multipart/form-data">
+        @csrf
+        @method('patch')
+        <div class="card card-custom gutter-b">
 
-        <div id="kt_modal_add_role">
-            <!--begin::Form-->
-            <form id="kt_modal_update_town" method="post" action="{{route('towns.update', $town->id)}}" enctype="multipart/form-data">
-                @csrf
-               @method('patch')
+            <div class="card-header flex-wrap py-3">
+                <div class="card-title">
+                    <h3 class="card-label">
+                        Edit Plot
+                    </h3>
+                </div>
+                <div class="card-toolbar">
+                    <a href="{{ route('plots.index') }}" class="btn btn-sm btn-primary">
+                        Plots List
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
 
-                <div class="card card-custom gutter-b">
-                    <div class="card-header flex-wrap py-3">
-                        <div class="card-title">
-                            <h3 class="card-label">
-                                Update Town
-
-                            </h3>
+                    <div class="form-group mb-6 col-md-6">
+                        <!--begin::Input group-->
+                        <div class="fv-row  fv-plugins-icon-container">
+                            <!--begin::Label-->
+                            <label class="required form-label">Plot Number</label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <input type="text"  name="plot_number" class="form-control" value="{{ $plot->plot_number }}" required>
+                            @error('plot_number')
+                                <div class="fv-plugins-message-container invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
-                        <div class="card-toolbar">
-
-                            <a href="{{ route('towns.index') }}" class="btn btn-sm btn-primary me-2">
-                                TOWN List
-                            </a>
-
-
+                        <!--end::Input group-->
+                    </div><!-- col end -->
+                    <div class="form-group mb-6 col-md-6">
+                        <!--begin::Input group-->
+                        <div class="fv-row  fv-plugins-icon-container">
+                            <!--begin::Label-->
+                            <label class="required form-label">Plot Type</label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <input type="text" name="plot_type" class="form-control" value="{{ $plot->plot_type }}" autocomplete="off" required>
+                            @error('plot_type')
+                                <div class="fv-plugins-message-container invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
-                    </div>
-                    <div class="card-body">
-                        <!--begin: Datatable-->
-                        <div class="row">
-                            <div class="form-group mb-6 col-md-6">
-                                <!--begin::Input group-->
-                                <div class="fv-row  fv-plugins-icon-container">
-                                    <!--begin::Label-->
-                                    <label class="required form-label">Town Name</label>
-                                    <!--end::Label-->
-                                    <!--begin::Input-->
-                                    <input type="text" name="name" class="form-control"  placeholder="Name" value="{{ $town->name }}" autocomplete="off" required>
-                                    <!--end::Input-->
-                                    @error('name')
-                                        <div class="fv-plugins-message-container invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                                <!--end::Input group-->
-                            </div>
-                            
-                            <div class="form-group mb-6 col-md-6">
-                                <!--begin::Input group-->
-                                <div class="fv-row  fv-plugins-icon-container">
-                                    <!--begin::Label-->
-                                    <label class="required form-label">Phone Number</label>
-                                    <!--end::Label-->
-                                    <!--begin::Input-->
-                                    <input type="text" name="phoneNumber" class="form-control"  placeholder="Phone Number" value="{{ $town->phoneNumber }}" autocomplete="off" required>
-                                    <!--end::Input-->
-                                    @error('phoneNumber')
-                                        <div class="fv-plugins-message-container invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                                <!--end::Input group-->
-                            </div>
-                            
-                            
-                            <!-- col end -->
-                        </div><!-- row end -->
-                        <div class="row">
-                            <div class="form-group mb-6 col-md-12">
-                                <!--begin::Input group-->
-                                <div class="fv-row  fv-plugins-icon-container">
-                                    <!--begin::Label-->
-                                    <label class="required form-label">Town Address</label>
-                                    <!--end::Label-->
-                                    <!--begin::Input-->
-                                    <input type="text" name="address" class="form-control"  placeholder="Town Address" value="{{ $town->address }}" autocomplete="off" required>
-                                    <!--end::Input-->
-                                    @error('address')
-                                        <div class="fv-plugins-message-container invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                                <!--end::Input group-->
-                            </div>
-                            <!-- col end -->
-                        </div><!-- row end -->
-                        <div class="row">
-                            <div class="form-group mb-6 col-md-6">
-                                <!--begin::Input group-->
-                                <div class="fv-row  fv-plugins-icon-container">
-                                    <!--begin::Label-->
-                                    <label class="required form-label">Num Of Plots</label>
-                                    <!--end::Label-->
-                                    <!--begin::Input-->
-                                    <input type="text" name="NumOfPlots" class="form-control"  placeholder="Number Of Plots" value="{{ $town->NumOfPlots }}" autocomplete="off" required>
-                                    <!--end::Input-->
-                                    @error('NumOfPlots')
-                                        <div class="fv-plugins-message-container invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                                <!--end::Input group-->
-                            </div>
-                            
-                            <div class="form-group mb-6 col-md-6">
-                                <!--begin::Input group-->
-                                <div class="fv-row  fv-plugins-icon-container">
-                                    <!--begin::Label-->
-                                    <label class="required form-label">Image</label>
-                                    <!--end::Label-->
-                                    <!--begin::Input-->
-                                    <input type="file" name="logo" class="form-control"  placeholder="logo" value="{{ $town->logo }}" autocomplete="off" required>
-                                    <!--end::Input-->
-                                    @error('logo')
-                                        <div class="fv-plugins-message-container invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                                <!--end::Input group-->
-                            </div>
-                            
-                            
-                            <!-- col end -->
-                        </div><!-- row end -->
-                        
-                    </div>
+                        <!--end::Input group-->
+                    </div><!-- col end -->
 
-                    <div class="card-footer">
+                    <div class="form-group mb-6 col-md-6">
+                        <!--begin::Input group-->
+                        <div class="fv-row  fv-plugins-icon-container">
+                            <!--begin::Label-->
+                            <label class="required form-label">Plot Size</label>
 
-                        <!--begin::Actions-->
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <input class="form-control" type="size" id="size" name="size" value="{{ $plot->size }}" autocomplete="off" required>
+                            @error('size')
+                                <div class="fv-plugins-message-container invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <!--end::Input group-->
+                    </div><!-- col end -->
 
-                        <button type="submit" class="btn btn-primary btn-sm me-2">
-                          Submit
-                        </button>
-                        <!--end::Actions-->
 
-                    </div><!-- card footer end -->
+                    <div class="form-group mb-6 col-md-6">
+                        <!--begin::Input group-->
+                        <div class="fv-row  fv-plugins-icon-container">
+                            <!--begin::Label-->
+                            <label class="required form-label">Dimension</label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <input type="text" value="{{ $plot->dimension }}" autocomplete="off" name="dimension" class="form-control" required>
+                            @error('dimension')
+                                <div class="fv-plugins-message-container invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <!--end::Input group-->
+                    </div><!-- col end -->
+
+
+
 
                 </div>
 
+                <div class="card-footer">
+
+                    <!--begin::Actions-->
+                    <a href="{{ route('plots.index') }}" class="btn btn-secondary btn-sm me-3">
+                        Discard
+                    </a>
+                    <button type="submit" class="btn btn-primary btn-sm">
+                       Update
+                    </button>
+                    <!--end::Actions-->
+
+                </div><!-- card footer end -->
             </form>
-            <!--end::Form-->
+            {{--  @include('adminPartials.error')  --}}
         </div>
-
-
-
     </div>
-</div>
     <script>
         $(document).ready(function() {
-            $("#kt_modal_update_town").validate({
-                rules: {
-                    name : {
-                        required: true,
-                        minlength: 3
-                    },
+            $("#kt_modal_update_plot_form").validate({
+              rules: {
+                plot_number : {
+                    required: true,
                 },
-                messages : {
-                    name: {
-                        required: "The name field is required.",
-                        minlength: "Name should be at least 3 characters"
-                    },
-                }
+                plot_type : {
+                    required: true,
+                },
+                size : {
+                    required: true,
+                },
+                dimension : {
+                    required: true,
+                },
+
+              },
+              messages : {
+                plot_number: {
+                    required: "The name field is required.",
+                },
+                plot_type: {
+                    required: "The description field is required.",
+                },
+                size: {
+                    required: "The short code field is required.",
+                },
+                dimension: {
+                    required: "The minimum time required field is required.",
+                },
+              }
             });
         });
+
     </script>
-<!--end::Post-->
 @endsection
-@section('scripts_plugins')
-<script src="{{ asset('metronic/plugins/global/plugins.bundle.js') }}"></script>
-@endsection
+

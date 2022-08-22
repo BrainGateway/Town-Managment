@@ -21,19 +21,19 @@
 
 <div class="container-fluid" id="app">
 
-    <form id="kt_modal_add_test_form" method="post" action="{{ route('towns.store') }}" autocomplete="off" enctype="multipart/form-data">
+    <form id="kt_modal_add_plot_form" method="post" action="{{ route('plots.store') }}" autocomplete="off" enctype="multipart/form-data">
         @csrf
         <div class="card card-custom gutter-b">
 
             <div class="card-header flex-wrap py-3">
                 <div class="card-title">
                     <h3 class="card-label">
-                        Create Town
+                        Create Plot
                     </h3>
                 </div>
                 <div class="card-toolbar">
-                    <a href="{{ route('towns.index') }}" class="btn btn-sm btn-primary">
-                        Towns List
+                    <a href="{{ route('plots.index') }}" class="btn btn-sm btn-primary">
+                        Plots List
                     </a>
                 </div>
             </div>
@@ -44,11 +44,11 @@
                         <!--begin::Input group-->
                         <div class="fv-row  fv-plugins-icon-container">
                             <!--begin::Label-->
-                            <label class="required form-label">Town Name</label>
+                            <label class="required form-label">Plot Number</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" value="{{old('name')}}" name="name" class="form-control" required>
-                            @error('name')
+                            <input type="text" value="{{old('plot_number')}}" name="plot_number" class="form-control" required>
+                            @error('plot_number')
                                 <div class="fv-plugins-message-container invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -60,11 +60,11 @@
                         <!--begin::Input group-->
                         <div class="fv-row  fv-plugins-icon-container">
                             <!--begin::Label-->
-                            <label class="required form-label">phoneNumber</label>
+                            <label class="required form-label">Plot Type</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" value="{{old('phoneNumber')}}" name="phoneNumber" class="form-control" required>
-                            @error('phoneNumber')
+                            <input type="text" value="{{old('plot_type')}}" name="plot_type" class="form-control" required>
+                            @error('plot_type')
                                 <div class="fv-plugins-message-container invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -72,32 +72,17 @@
                         </div>
                         <!--end::Input group-->
                     </div><!-- col end -->
-                    <div class="form-group mb-6 col-md-12">
-                        <!--begin::Input group-->
-                        <div class="fv-row  fv-plugins-icon-container">
-                            <!--begin::Label-->
-                            <label class="required form-label">Address</label>
-                            <!--end::Label-->
-                            <!--begin::Input-->
-                            <input type="text" value="{{old('address')}}" name="address" class="form-control" required>
-                            @error('address')
-                                <div class="fv-plugins-message-container invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <!--end::Input group-->
-                    </div><!-- col end -->
+
                     <div class="form-group mb-6 col-md-6">
                         <!--begin::Input group-->
                         <div class="fv-row  fv-plugins-icon-container">
                             <!--begin::Label-->
-                            <label class="required form-label">Number Of Plots</label>
+                            <label class="required form-label">Plot Size</label>
 
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input class="form-control" type="number" id="NumOfPlots" name="NumOfPlots" min="1" max="180" value="{{ old('NumOfPlots') }}" required>
-                            @error('NumOfPlots')
+                            <input class="form-control" type="size" id="size" name="size" min="1" max="180" value="{{ old('size') }}" required>
+                            @error('size')
                                 <div class="fv-plugins-message-container invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -105,17 +90,17 @@
                         </div>
                         <!--end::Input group-->
                     </div><!-- col end -->
-                    
-                
+
+
                     <div class="form-group mb-6 col-md-6">
                         <!--begin::Input group-->
                         <div class="fv-row  fv-plugins-icon-container">
                             <!--begin::Label-->
-                            <label class="required form-label">logo</label>
+                            <label class="required form-label">Dimension</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="file" value="{{old('logo')}}" name="logo" class="form-control" required>
-                            @error('logo')
+                            <input type="text" value="{{old('dimension')}}" name="dimension" class="form-control" required>
+                            @error('dimension')
                                 <div class="fv-plugins-message-container invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -124,15 +109,15 @@
                         <!--end::Input group-->
                     </div><!-- col end -->
 
-                    
 
-                    
+
+
                 </div>
 
                 <div class="card-footer">
 
                     <!--begin::Actions-->
-                    <a href="{{ route('towns.index') }}" class="btn btn-secondary btn-sm me-3">
+                    <a href="{{ route('plots.index') }}" class="btn btn-secondary btn-sm me-3">
                         Discard
                     </a>
                     <button type="submit" class="btn btn-primary btn-sm">
@@ -147,50 +132,35 @@
     </div>
     <script>
         $(document).ready(function() {
-            $("#kt_modal_add_test_form").validate({
+            $("#kt_modal_add_plot_form").validate({
               rules: {
-                name : {
-                    required: true,
-                    minlength: 3
-                },
-                phoneNumber : {
-                    required: true,
-                    minlength: 11
-                },
-                NumOfPlots : {
-                    required: true,
-                    minlength: 3
-                },
-                address : {
-                    required: true,
-                    rangelength: [1, 280]
-                },
-                logo : {
+                plot_number : {
                     required: true,
                 },
-                
+                plot_type : {
+                    required: true,
+                },
+                size : {
+                    required: true,
+                },
+                dimension : {
+                    required: true,
+                },
+
               },
               messages : {
-                name: {
+                plot_number: {
                     required: "The name field is required.",
-                    minlength: "Name should be at least 3 characters"
                 },
-                phoneNumber: {
+                plot_type: {
                     required: "The description field is required.",
-                    minlength: "Name should be at least 11 characters"
                 },
-                NumOfPlots: {
+                size: {
                     required: "The short code field is required.",
-                    minlength: "Name should be at least 3 characters or numbers"
                 },
-                address: {
+                dimension: {
                     required: "The minimum time required field is required.",
-                    minlength: "Please enter a value less than or equal to 280."
                 },
-                logo: {
-                    required: "The icon field is required.",
-                },
-                
               }
             });
         });

@@ -13,14 +13,13 @@
                 <div class="card-header flex-wrap py-3">
                     <div class="card-title">
                         <h3 class="card-label">
-                            Town List
-
+                            Plots List
                         </h3>
                     </div>
                     @can("User=create")
                     <div class="card-toolbar">
-                    <a href="{{ route('towns.create') }}" class="btn btn-sm btn-primary">
-                            Create Town
+                    <a href="{{ route('plots.create') }}" class="btn btn-sm btn-primary">
+                            Create Plot
                         </a>
 
                     </div>
@@ -33,9 +32,9 @@
                 <!--begin::Card body-->
                 <div class="card-body  pt-6">
                     <!--begin::Table-->
-                    <div id="kt_table_towns_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer ">
+                    <div id="kt_table_plots_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer ">
                         <div class="table-responsive">
-                            <table class="table table-striped table-row-bordered table-sm  w-100  border rounded align-middle" id="kt_table_town">
+                            <table class="table table-striped table-row-bordered table-sm  w-100  border rounded align-middle" id="kt_table_plot">
                                 <!--begin::Table head-->
                                 <thead>
                                 <!--begin::Table row-->
@@ -44,19 +43,16 @@
                                         Sr.
                                     </th>
                                     <th>
-                                        Town Name
+                                        Plot Number
                                     </th>
                                     <th>
-                                        Phone No
+                                        Plot Type
                                     </th>
                                     <th>
-                                        Address
+                                        Size
                                     </th>
                                     <th>
-                                        Number of plots
-                                    </th>
-                                    <th>
-                                        images
+                                        Dimension
                                     </th>
                                     <th class="w-82px">
                                         Action
@@ -92,7 +88,7 @@
 
     $(function () {
 
-        var table = $('#kt_table_town').DataTable({
+        var table = $('#kt_table_plot').DataTable({
 
             stateSave: false,
             processing: true,
@@ -100,7 +96,7 @@
             searching: true,
             dom: 'Bfrtip',
             ajax: {
-                url: "{{ route('towns.index') }}",
+                url: "{{ route('plots.index') }}",
             },
 
             "fnDrawCallback": function(settings, json) {
@@ -118,11 +114,10 @@
                     "className": "text-center",
                 },
 
-                {data: 'name',                  name: 'name'},
-                {data: 'phoneNumber',           name: 'phoneNumber'},
-                {data: 'address',            name: 'address'},
-                {data: 'NumOfPlots',             name: 'NumOfPlots'},
-                {data: 'logo',              name: 'logo'},
+                {data: 'plot_number',                  name: 'plot_number'},
+                {data: 'plot_type',           name: 'plot_type'},
+                {data: 'size',            name: 'size'},
+                {data: 'dimension',             name: 'dimension'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             lengthMenu: [
@@ -157,7 +152,7 @@
                             columns: [ 0, 1, 2, 4, 5, 6]
                         }
                     },
-                    
+
                     'pageLength',
                     'colvis',
                 ],
@@ -169,7 +164,7 @@
 
       });
         // Add event listener for opening and closing details
-    $('#kt_table_town tbody').on('click', 'td.details-control', function () {
+    $('#kt_table_plot tbody').on('click', 'td.details-control', function () {
         var tr = $(this).closest('tr');
         var row = table.row( tr );
 
@@ -188,8 +183,8 @@
       $(".card-body").on("click", ".delete-action", function () {
         var hidden_user_id = $('#hidden_user_id').val();
          let deleteId = $(this).attr("data-delete"),
-             url = "{{ route('towns.destroy', ":id") }}",
-             table = $('#kt_table_town').DataTable();
+             url = "{{ route('plots.destroy', ":id") }}",
+             table = $('#kt_table_plot').DataTable();
          url = url.replace(':id', deleteId);
          Swal.fire({
              title: 'Are you sure?',

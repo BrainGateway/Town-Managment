@@ -31,7 +31,7 @@ class PlotTypeController extends Controller
                 }
                 return view('plot-type.index');
             }
-            
+
         } catch (\Throwable $th) {
             Log::debug($th->getMessage());
             Log::debug($th->getTraceAsString());
@@ -58,20 +58,22 @@ class PlotTypeController extends Controller
      */
     public function store(PlotTypeRequest $request)
     {
+        // dd('here');
         try {
-            $data                  = Arr::only($request->validated(),['name', 'town_id']);
-            
+
+            $data                  = Arr::only($request->validated(),['name']);
+
             $plotType = PlotType::createPlotType($data);
             if ($request->is('api/*')) {
                 return $this->show($plotType->id);
             }else{
-                return redirect()->route('plot-type.index');
+                return redirect()->route('plot-types.index');
             }
-            
+
         } catch (\Throwable $th) {
             Log::debug($th->getMessage());
             Log::debug($th->getTraceAsString());
-            return response()->json(['status' => 'error' , 'message' => $th->getTraceAsString()]);   
+            return response()->json(['status' => 'error' , 'message' => $th->getTraceAsString()]);
         }
     }
 
@@ -108,15 +110,15 @@ class PlotTypeController extends Controller
      */
     public function update(UpdatePLotTypeRequest $request, $id)
     {
-        try{   
+        try{
             $plotType         = PLotType::find($id);
             $data          = Arr::only($request->validated(), ['name','town_id']);
-           
+
             PLotType::updatePlotType($id , $data);
             if ($request->is('api/*')) {
                 return $this->show($id);
             } else {
-                return redirect()->route('plot-type.index');
+                return redirect()->route('plot-types.index');
             }
         } catch(\Throwable $th){
             Log::debug($th->getMessage());

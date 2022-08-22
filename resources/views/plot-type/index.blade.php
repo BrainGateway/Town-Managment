@@ -19,7 +19,7 @@
                     </div>
                     @can("User=create")
                     <div class="card-toolbar">
-                    <a href="{{ route('towns.create') }}" class="btn btn-sm btn-primary">
+                    <a href="{{ route('plot-types.create') }}" class="btn btn-sm btn-primary">
                             Create Town
                         </a>
 
@@ -33,9 +33,9 @@
                 <!--begin::Card body-->
                 <div class="card-body  pt-6">
                     <!--begin::Table-->
-                    <div id="kt_table_towns_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer ">
+                    <div id="kt_table_plot_types_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer ">
                         <div class="table-responsive">
-                            <table class="table table-striped table-row-bordered table-sm  w-100  border rounded align-middle" id="kt_table_town">
+                            <table class="table table-striped table-row-bordered table-sm  w-100  border rounded align-middle" id="kt_table_plot_type">
                                 <!--begin::Table head-->
                                 <thead>
                                 <!--begin::Table row-->
@@ -44,20 +44,9 @@
                                         Sr.
                                     </th>
                                     <th>
-                                        Town Name
+                                        Plot Type
                                     </th>
-                                    <th>
-                                        Phone No
-                                    </th>
-                                    <th>
-                                        Address
-                                    </th>
-                                    <th>
-                                        Number of plots
-                                    </th>
-                                    <th>
-                                        images
-                                    </th>
+
                                     <th class="w-82px">
                                         Action
                                     </th>
@@ -92,7 +81,7 @@
 
     $(function () {
 
-        var table = $('#kt_table_town').DataTable({
+        var table = $('#kt_table_plot_type').DataTable({
 
             stateSave: false,
             processing: true,
@@ -100,7 +89,7 @@
             searching: true,
             dom: 'Bfrtip',
             ajax: {
-                url: "{{ route('towns.index') }}",
+                url: "{{ route('plot-types.index') }}",
             },
 
             "fnDrawCallback": function(settings, json) {
@@ -119,10 +108,6 @@
                 },
 
                 {data: 'name',                  name: 'name'},
-                {data: 'phoneNumber',           name: 'phoneNumber'},
-                {data: 'address',            name: 'address'},
-                {data: 'NumOfPlots',             name: 'NumOfPlots'},
-                {data: 'logo',              name: 'logo'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             lengthMenu: [
@@ -157,7 +142,7 @@
                             columns: [ 0, 1, 2, 4, 5, 6]
                         }
                     },
-                    
+
                     'pageLength',
                     'colvis',
                 ],
@@ -169,7 +154,7 @@
 
       });
         // Add event listener for opening and closing details
-    $('#kt_table_town tbody').on('click', 'td.details-control', function () {
+    $('#kt_table_plot_type tbody').on('click', 'td.details-control', function () {
         var tr = $(this).closest('tr');
         var row = table.row( tr );
 
@@ -188,8 +173,8 @@
       $(".card-body").on("click", ".delete-action", function () {
         var hidden_user_id = $('#hidden_user_id').val();
          let deleteId = $(this).attr("data-delete"),
-             url = "{{ route('towns.destroy', ":id") }}",
-             table = $('#kt_table_town').DataTable();
+             url = "{{ route('plot-types.destroy', ":id") }}",
+             table = $('#kt_table_plot_type').DataTable();
          url = url.replace(':id', deleteId);
          Swal.fire({
              title: 'Are you sure?',

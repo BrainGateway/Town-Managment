@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Helpers\S3Helper;
 
 use App\Http\Controllers\TownController;
+use App\Http\Controllers\PlotTypeController;
+use App\Http\Controllers\PlotController;
 
 
 /*
@@ -52,5 +54,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     });
 
     Route::resource('towns',                        TownController::class);
+    Route::resource('plot-types',                   PlotTypeController::class);
+    Route::resource('plots',                        PlotController::class);
 
 });
