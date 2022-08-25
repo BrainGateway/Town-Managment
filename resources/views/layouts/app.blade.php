@@ -12,6 +12,18 @@
     <link href="{{ asset('css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     @yield('styles')
 </head>
+<style>
+
+    label.error {
+        color: #F1416C;
+        margin-top: 5px;
+    }
+
+    input.error {
+        border: 1px dashed #F1416C;
+        color: #F1416C;
+    }
+    </style>
 <body id="kt_body"
       class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed toolbar-tablet-and-mobile-fixed aside-enabled aside-fixed"
       style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
@@ -46,8 +58,22 @@
 <script src="{{ asset('plugins/global/plugins.bundle.js') }}"></script>
 <script src="{{ asset('js/scripts.bundle.js') }}"></script>
 <script src="{{ asset('js/custom/widgets.js') }}"></script>
+<script src="{{ asset('js/custom/validate.js') }}"></script>
+<script src="{{ asset('js/custom/plot-sale.js') }}"></script>
+
 @yield('scripts_plugins')
 @yield('scripts')
+<script>
+    $(document).ready(function() {
+        $('.selectpicker').select2();
+        $("form").on('submit',function(e){
+            showLoader();
+            if(!$(this).valid()){
+                hideLoader();
+            }
+        })
+    });
+</script>
 
 </body>
 <!--end::Body-->

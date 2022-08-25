@@ -9,7 +9,7 @@ use App\Http\Controllers\TownController;
 use App\Http\Controllers\PlotTypeController;
 use App\Http\Controllers\PlotSizeController;
 use App\Http\Controllers\PlotController;
-use App\Http\Controllers\PlotSalseController;
+use App\Http\Controllers\PlotSaleController;
 
 
 
@@ -61,7 +61,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('plot-types',                   PlotTypeController::class);
     Route::resource('plots',                        PlotController::class);
     Route::resource('size-dimensions',              PlotSizeController::class);
-    Route::resource('plot-sales',                   PlotSalseController::class);
+    Route::resource('plot-sales',                   PlotSaleController::class);
 
 
 });

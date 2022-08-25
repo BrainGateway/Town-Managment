@@ -333,7 +333,7 @@
         @endhasrole
 
         @hasrole('Super Admin')
-            <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ Request::is('Plot') || Request::is('Plot/*') ? 'hover show' : '' }}">
+            <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ Request::is('plot-sales') || Request::is('plot-sales/*') ? 'hover show' : '' }}">
                 <span class="menu-link">
                     <span class="menu-icon">
                         <span class="svg-icon svg-icon-2">
@@ -361,25 +361,25 @@
                             </svg>
                         </span>
                     </span>
-                    <span class="menu-title">Plot</span>
+                    <span class="menu-title">Plot Sale</span>
                     <span class="menu-arrow"></span>
                 </span>
                 <div class="menu-sub menu-sub-accordion">
                     @if(auth()->user()->roles->first()->hasPermissionTo('Plot Sale'))
                         <div class="menu-item">
-                            <a class="menu-link  {{ Request::is('plots') ? 'active' : '' }}" href="{{ route('plots.index') }}">
+                            <a class="menu-link  {{ Request::is('plot-sales') ? 'active' : '' }}" href="{{ route('plot-sales.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">All Plots </span>
+                                <span class="menu-title">All Sold Plots </span>
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link  {{ Request::is('plots/create') ? 'active' : '' }}" href="{{ route('plots.create') }}">
+                            <a class="menu-link  {{ Request::is('plot-sales/create') ? 'active' : '' }}" href="{{ route('plot-sales.create') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Add Plot</span>
+                                <span class="menu-title">Sale Plot</span>
                             </a>
                         </div>
                     @endif

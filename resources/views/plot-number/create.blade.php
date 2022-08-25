@@ -39,7 +39,6 @@
             </div>
             <div class="card-body">
                 <div class="row">
-
                     <div class="form-group mb-6 col-md-6">
                         <!--begin::Input group-->
                         <div class="fv-row  fv-plugins-icon-container">
@@ -72,7 +71,6 @@
                         </div>
                         <!--end::Input group-->
                     </div><!-- col end -->
-
                     <div class="form-group mb-6 col-md-6">
                         <!--begin::Input group-->
                         <div class="fv-row  fv-plugins-icon-container">
@@ -90,8 +88,6 @@
                         </div>
                         <!--end::Input group-->
                     </div><!-- col end -->
-
-
                     <div class="form-group mb-6 col-md-6">
                         <!--begin::Input group-->
                         <div class="fv-row  fv-plugins-icon-container">
@@ -108,10 +104,6 @@
                         </div>
                         <!--end::Input group-->
                     </div><!-- col end -->
-
-
-
-
                 </div>
 
                 <div class="card-footer">
