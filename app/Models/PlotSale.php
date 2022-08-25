@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
-
+use App\Model\User;
 
 class PlotSale extends Model
 {
@@ -53,14 +53,23 @@ class PlotSale extends Model
     public static function createPloteSale($data){
 
         try {
-            
+            $nominee_info = Arr::only($data , ['nominee_name','nominee_father_name','nominee_address','nominee_phone_number','nominee_cnic','nominee_email','nominee_password','nominee_profile_img','nominee_cnic_front_img','nominee_cnic_back_img']);
+            $owner_info   = Arr::only($data , ['owner_name','owner_father_name','owner_address','owner_phone_number','owner_cnic','owner_email','owner_password' ,'owner_profile_img','owner_cnic_front_img','owner_cnic_back_img']);
+            $plot_info    = Arr::only($data , ['plot_number','size','dimension','form_number','plot_price','discount','registration_charges','deal_price','installments','deal_validity','sale_man','mmd','register_only']);
+            console.log($nominee_info);
+            $create_nominee = createUser($owner_info);
+            if($create_nominee){
+                $create_nominee = createUser($owner_info);
+
+            }
+
             $plotsale = PlotSale::create($data);
-            return $plotsale ; 
+            return $plotsale ;
         } catch (\Throwable $th) {
             Log::debug($th->getMessage());
             Log::debug($th->getTraceAsString());
             return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
-            
+
         }
 
     }
@@ -84,6 +93,20 @@ class PlotSale extends Model
             Log::debug($th->getMessage());
             Log::debug($th->getTraceAsString());
             return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
+        }
+    }
+
+    public static function createUser($data){
+        try {
+
+            dd($data);
+            $user = User::create($data);
+            return $user ;
+        } catch (\Throwable $th) {
+            Log::debug($th->getMessage());
+            Log::debug($th->getTraceAsString());
+            return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
+
         }
     }
 

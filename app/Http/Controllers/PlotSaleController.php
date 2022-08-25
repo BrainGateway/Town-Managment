@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\PlotSale;
+use App\Models\Plot;
 use App\Http\Requests\StorePlotSaleRequest;
 use App\Http\Requests\UpdatePlotSaleRequest;
 use App\Http\Resources\PlotSaleResource;
@@ -45,7 +45,8 @@ class PlotSaleController extends Controller
      */
     public function create()
     {
-        return view('plot-sale.create');
+        $plots = Plot::all();
+        return view('plot-sale.create' , compact('plots'));
     }
 
     /**
@@ -57,14 +58,14 @@ class PlotSaleController extends Controller
     public function store(StorePlotSaleRequest $request)
     {
         try {
-            $data = Arr::only($request->validated() , ['plot_number','size','dimension','form_number','plot_price','discount','registration_charges','deal_price','installments','deal_validity','sale_man','mmd','register_only','town_id','block_id','owner_plot','nominee_owner_plot' ]);
-            $plotSale = PlotSale::createPloteSale($data);
+           
+            $plotSale = PlotSale::createPloteSale($request->validated());
             if ($request->is('api/*')) {
                 return $this->show($plotSale->id);
             } else {
-                return redirect()->route('plot-sale.index');
+                return redirect()->route('plot-sales.index');
             }
-            
+
         } catch (\Throwable $th) {
             Log::debug($th->getMessage());
             Log::debug($th->getTraceAsString());
@@ -81,7 +82,6 @@ class PlotSaleController extends Controller
     public function show($id)
     {
         return new PlotSaleResource(PlotSale::findOrFail($id));
-
     }
 
     /**
@@ -107,15 +107,15 @@ class PlotSaleController extends Controller
     {
         try{
             $plotSale               = PlotSale::findOrFail($id);
-            $data                   = Arr::only($request->validated(), ['plot_number','size','dimension','form_number','plot_price','discount','registration_charges','deal_price','installments','deal_validity','sale_man','mmd','register_only','town_id','block_id','owner_plot','nominee_owner_plot' ]);
-            
+            $data                   = Arr::only($request->validated(), ['plot_number','size','dimension','form_number','plot_price','discount','registration_charges','deal_price','installments','deal_validity','sale_man','mmd','register_only','owner_name','owner_father_name','owner_address','owner_phone_number','owner_cnic','owner_email','owner_password' ,'owner_profile_img','owner_cnic_front_img','owner_cnic_back_img' ,'nominee_name','nominee_father_name','nominee_address','nominee_phone_number','nominee_cnic','nominee_email','nominee_password','nominee_profile_img','nominee_cnic_front_img','nominee_cnic_back_img']);
+
             PlotSale::updatePlotSale($id, $data);
 
             if ($request->is('api/*')) {
 
                 return $this->show($id);
             }else{
-                return redirect()->route('plot-sale.index');
+                return redirect()->route('plot-sales.index');
             }
 
         } catch(\Throwable $th) {

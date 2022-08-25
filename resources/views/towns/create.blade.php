@@ -105,8 +105,8 @@
                         </div>
                         <!--end::Input group-->
                     </div><!-- col end -->
-                    
-                
+
+
                     <div class="form-group mb-6 col-md-6">
                         <!--begin::Input group-->
                         <div class="fv-row  fv-plugins-icon-container">
@@ -124,9 +124,9 @@
                         <!--end::Input group-->
                     </div><!-- col end -->
 
-                    
 
-                    
+
+
                 </div>
 
                 <div class="card-footer">
@@ -168,7 +168,7 @@
                 logo : {
                     required: true,
                 },
-                
+
               },
               messages : {
                 name: {
@@ -190,7 +190,7 @@
                 logo: {
                     required: "The icon field is required.",
                 },
-                
+
               }
             });
         });

@@ -24,8 +24,7 @@ class PlotTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'town_id' => 'required'
+            'name' => 'required'
         ];
     }
 }

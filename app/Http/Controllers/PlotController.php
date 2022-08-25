@@ -57,15 +57,13 @@ class PlotController extends Controller
     public function store(StorePlotRequest $request)
     {
         try{
-
-
-            $data               = Arr::only($request->validated(), ['plot_number', 'plot_type', 'size', 'dimension' , 'town_id']);
+            $data               = Arr::only($request->validated(), ['plot_number', 'plot_type', 'size', 'dimension']);
             $plot   = Plot::createplot($data);
 
             if ($request->is('api/*')) {
                 return $this->show($plot->id);
             }else{
-                return redirect()->route('plot-number.index');
+                return redirect()->route('plots.index');
             }
         } catch(\Throwable $th) {
             Log::debug($th->getMessage());
@@ -109,14 +107,14 @@ class PlotController extends Controller
         try{
             $plot               = Plot::findOrFail($id);
             $data               = Arr::only($request->validated(), ['plot_number', 'plot_type', 'size', 'dimension' , 'town_id']);
-            
+
             Plot::updatePlot($id, $data);
 
             if ($request->is('api/*')) {
 
                 return $this->show($id);
             }else{
-                return redirect()->route('plot-number.index');
+                return redirect()->route('plots.index');
             }
 
         } catch(\Throwable $th) {

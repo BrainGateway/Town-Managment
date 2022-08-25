@@ -24,11 +24,10 @@ class StorePlotRequest extends FormRequest
     public function rules()
     {
         return [
-            'plot_number'=> 'required', 
-            'plot_type'=> 'required', 
-            'size'=> 'required', 
-            'dimension' => 'required', 
-            'town_id' => 'required'
+            'plot_number'=> 'required',
+            'plot_type'=> 'required',
+            'size'=> 'required',
+            'dimension' => 'required',
         ];
     }
 }

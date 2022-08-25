@@ -55,7 +55,6 @@ class Town extends Model
         try{
             $town  = Town::create($data);
             return $town;
-
         } catch(\Throwable $th) {
             Log::debug($th->getMessage());
             Log::debug($th->getTraceAsString());
