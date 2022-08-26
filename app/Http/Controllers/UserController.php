@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
@@ -57,19 +58,15 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $validated = $request->validated();
-
-        if($validated) {
-
-            $user = User::createUser( $request );
-           // dd($user);
-
-            if( $user ) {
-                Alert::success('User', 'Successfully created');
-                return redirect()->route('users.index');
-            }
-
-        }
+        $user = User::create([
+            'name' => $request->first_name.' - '.$request->last_name,
+            'email' => $request->email,
+            'cnic' => random_int(100000, 999999),
+            'mobile_number' => random_int(100000, 999999),
+            'password' => Hash::make($request->password),
+        ]);
+        $user->assignRole(Role::whereName($request->user_role)->first());
+        return redirect()->route('users.index');
     }
 
     /**
@@ -252,10 +249,9 @@ class UserController extends Controller
             ->addIndexColumn()
             ->addColumn('userInfo', function ($row) {
                 $edit_hrf='';
-                if ($row->can("User=write")) {
+                
                     $edit_hrf=route("users.edit", $row->id);
-                }
-
+                
                     $html = '<div class="d-flex align-items-center">
                     <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
                                 <a href="' . $edit_hrf. '">
@@ -305,14 +301,14 @@ class UserController extends Controller
             ->addColumn('action', function ($row) {
                 $user = $row;
                 $html = "";
-                if ($user->can("User=write")) {
+                
                     $html = '<a href="' . route("users.edit", $row->id) . '" class="btn-sm btn btn-clean btn-icon btn-light-primary me-2 p-0 " data-type="edit" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit this User">
                                 <i class="fa fa-pencil-alt"></i>
                             </a>';
                     $html .= '<a href="javascript:void(0);" class="btn-sm btn btn-clean btn-icon btn-light-danger p-0 delete-action" data-delete="' . $row->id . '" title="delete details" data-type="edit" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete this User">
                                 <i class="fa fa-trash"></i>
                             </button>';
-                }
+                
                 return $html;
             })
             ->rawColumns(['userRole', 'action', 'created_at', 'userInfo', 'userPermissions'])

@@ -75,12 +75,12 @@
                                     <label class="required" for="user_email">Email</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="email" name="user_email" id="user_email" class="form-control form-control-sm" placeholder="example@domain.com" value="{{ old("user_email") }}" autocomplete="off">
+                                    <input type="email" name="email" id="user_email" class="form-control form-control-sm" placeholder="example@domain.com" value="{{ old("email") }}" autocomplete="off">
                                     <div class="error text-danger d-none" id="email_error">
                                         Please enter a valid email address
                                     </div>
                                     <!--end::Input-->
-                                    @error('user_email')
+                                    @error('email')
                                     <div class="fv-plugins-message-container invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -124,64 +124,23 @@
                                 </div>
                                 <!--end::Input group-->
                             </div><!-- col end -->
-
-
-
-                        </div><!-- row end -->
-
-                        <div class="row">
-
-                            <div class="form-group mb-5 col-md-12">
-                                <!--begin::Input group-->
-                                <div class="mb-7">
-                                    <!--begin::Label-->
-                                    <label class="required fw-bold fs-6 mb-5">Role</label>
+                            <div class="form-group col-3">
+                               
+                                <div class="fv-row  fv-plugins-icon-container">
+                                    <label class=" required ">Role</label>
                                     @error('user_role')
                                         <div class="fv-plugins-message-container invalid-feedback">
                                             {{ $message }}
                                         </div>
                                     @enderror
-                                    <!--end::Label-->
-                                    <!--begin::Roles-->
-
-                                    <div class="row row-cols-1 row-cols-md-3 row-cols-xl-5">
-
-
-                                        @forelse( $roles as $role )
-                                            <div class="form-group mb-5 col-md-4">
-                                                <!--begin::Input row-->
-                                                <div class="d-flex fv-row">
-                                                    <!--begin::Radio-->
-                                                    <div class="form-check form-check-custom form-check-solid">
-                                                        <!--begin::Input-->
-                                                        <input class="form-check-input me-3 role_permissions" name="user_role[]" type="checkbox" value="{{ $role->id }}" id="{{ $role->name }}">
-                                                        <!--end::Input-->
-                                                        <!--begin::Label-->
-                                                        <label class="form-check-label" for="{{ $role->name }}">
-                                                            <div class="fw-bolder text-gray-800">
-                                                                {{ $role->name }}
-                                                            </div>
-                                                            <div class="text-gray-600">
-                                                                {{ $role->detail }}
-                                                            </div>
-                                                        </label>
-                                                        <!--end::Label-->
-                                                    </div>
-                                                    <!--end::Radio-->
-                                                </div>
-                                                <!--end::Input row-->
-                                            </div><!-- col end -->
-                                        @empty
-                                            No Roles found
-                                        @endforelse
-
-                                    </div><!-- row end -->
-
-
-                                    <!--end::Roles-->
+                                    <select class="form-control form-control-sm ptb-0 selectpicker form-select role_permissions" name="user_role[]">
+                                        @foreach( $roles as $role )
+                                        <option value="{{ $role->name }}"  @if(in_array($role->name, old("user_role") ?: [])) selected @endif   >{{ $role->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                <!--end::Input group-->
-                            </div><!-- col end -->
+                            </div>
+
 
                         </div><!-- row end -->
 

@@ -17,14 +17,14 @@
 
                         </h3>
                     </div>
-                    @can("User=create")
+                    
                     <div class="card-toolbar">
                     <a href="{{ route("users.create") }}" class="btn btn-sm btn-primary">
                             Create User
                         </a>
 
                     </div>
-                    @endcan
+                    
                 </div>
 
             </div>
