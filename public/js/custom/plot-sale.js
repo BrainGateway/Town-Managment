@@ -1,6 +1,6 @@
-$( "#plot_size" ).prop( "disabled", true );
-$( "#plot_dimension" ).prop( "disabled", true );
-$( "#deal_price" ).prop( "disabled", true );
+$( "#plot_size" ).prop( "readonly", true );
+$( "#plot_dimension" ).prop( "readonly", true );
+$( "#deal_price" ).prop( "readonly", true );
 
 $('#plot_price').attr('value', '0.00');
 $('#discount').attr('value', '0.00');
