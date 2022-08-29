@@ -17,10 +17,11 @@ yarn-error.log
 /.vscode
 /storage
 /public/css
-/public/js
+# /public/js
 /public/img
 /public/media
 /public/plugins
 /public/vendor
 /public/block
-/public/*
+/public/mmd
+/public/town
