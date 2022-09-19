@@ -66,7 +66,7 @@
 
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input class="form-control" type="size" id="plot_size" name="size" value="{{ old('size') }}" placeholder="Plot Size" disabled required>
+                            <input class="form-control" type="size" id="plot_size" name="size" value="{{ old('size') }}" placeholder="Plot Size" required>
                             @error('size')
                                 <div class="fv-plugins-message-container invalid-feedback">
                                     {{ $message }}
@@ -82,7 +82,7 @@
                             <label class="required form-label">Dimension</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" value="{{old('dimension')}}" id="plot_dimension" name="dimension" placeholder="Plot Dimension" class="form-control" disabled required>
+                            <input type="text" value="{{old('dimension')}}" id="plot_dimension" name="dimension" placeholder="Plot Dimension" class="form-control" required>
                             @error('dimension')
                                 <div class="fv-plugins-message-container invalid-feedback">
                                     {{ $message }}
@@ -115,7 +115,7 @@
                             <label class="required form-label">Plot Price</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="number" min="0" value="{{old('plot_price')}}" id="plot_price" name="plot_price"  class="form-control" required>
+                            <input type="number" min="0" value="{{old('plot_price')}}" id="plot_price" name="plot_price" min = 0  class="form-control" required>
                             @error('plot_price')
                                 <div class="fv-plugins-message-container invalid-feedback">
                                     {{ $message }}
@@ -131,7 +131,7 @@
                             <label class="required form-label">Discount</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="number" min="0" value="{{old('discount')}}" id="discount" name="discount" class="form-control"  required>
+                            <input type="number" min="0" value="{{old('discount')}}" id="discount" name="discount" min = 0 class="form-control"  required>
                             @error('discount')
                                 <div class="fv-plugins-message-container invalid-feedback">
                                     {{ $message }}
@@ -374,9 +374,9 @@
 
                     <div class="form-group mb-4 col-md-4">
                         <!--begin::Image input-->
-                        <div class="image-input image-input-circle" data-kt-image-input="true" style="background-image: url(http://crudpractice.cw/media/avatars/blank.png)">
+                        <div class="image-input image-input-circle" data-kt-image-input="true" style="background-image: url(http://127.0.0.1:8000/media/avatars/blank.png)">
                             <!--begin::Image preview wrapper-->
-                            <div class="image-input-wrapper w-125px h-125px" style="background-image: url(http://crudpractice.cw/media/avatars/blank.png)"></div>
+                            <div class="image-input-wrapper w-125px h-125px" style="background-image: url(http://127.0.0.1:8000/media/avatars/blank.png)"></div>
                             <!--end::Image preview wrapper-->
 
                             <!--begin::Edit button-->
@@ -418,9 +418,9 @@
                     </div><!-- col end -->
                     <div class="form-group mb-4 col-md-4">
                         <!--begin::Image input-->
-                        <div class="image-input " data-kt-image-input="true" style="background-image: url(http://crudpractice.cw/media/avatars/blank.png)">
+                        <div class="image-input " data-kt-image-input="true" style="background-image: url(http://127.0.0.1:8000/media/avatars/blank.png)">
                             <!--begin::Image preview wrapper-->
-                            <div class="image-input-wrapper w-125px h-125px" style="background-image: url(http://crudpractice.cw/media/avatars/blank.png)"></div>
+                            <div class="image-input-wrapper w-125px h-125px" style="background-image: url(http://127.0.0.1:8000/media/avatars/blank.png)"></div>
                             <!--end::Image preview wrapper-->
 
                             <!--begin::Edit button-->
@@ -462,9 +462,9 @@
                     </div><!-- col end -->
                     <div class="form-group mb-4 col-md-4">
                         <!--begin::Image input-->
-                        <div class="image-input" data-kt-image-input="true" style="background-image: url(http://crudpractice.cw/media/avatars/blank.png)">
+                        <div class="image-input" data-kt-image-input="true" style="background-image: url(http://127.0.0.1:8000/media/avatars/blank.png)">
                             <!--begin::Image preview wrapper-->
-                            <div class="image-input-wrapper w-125px h-125px" style="background-image: url(http://crudpractice.cw/media/avatars/blank.png)"></div>
+                            <div class="image-input-wrapper w-125px h-125px" style="background-image: url(http://127.0.0.1:8000/media/avatars/blank.png)"></div>
                             <!--end::Image preview wrapper-->
 
                             <!--begin::Edit button-->
@@ -630,9 +630,9 @@
                     </div><!-- col end -->
                     <div class="form-group mb-4 col-md-4">
                         <!--begin::Image input-->
-                        <div class="image-input image-input-circle" data-kt-image-input="true" style="background-image: url(http://crudpractice.cw/media/avatars/blank.png)">
+                        <div class="image-input image-input-circle" data-kt-image-input="true" style="background-image: url(http://127.0.0.1:8000/media/avatars/blank.png)">
                             <!--begin::Image preview wrapper-->
-                            <div class="image-input-wrapper w-125px h-125px" style="background-image: url(http://crudpractice.cw/media/avatars/blank.png)"></div>
+                            <div class="image-input-wrapper w-125px h-125px" style="background-image: url(http://127.0.0.1:8000/media/avatars/blank.png)"></div>
                             <!--end::Image preview wrapper-->
 
                             <!--begin::Edit button-->
@@ -674,9 +674,9 @@
                     </div><!-- col end -->
                     <div class="form-group mb-4 col-md-4">
                         <!--begin::Image input-->
-                        <div class="image-input " data-kt-image-input="true" style="background-image: url(http://crudpractice.cw/media/avatars/blank.png)">
+                        <div class="image-input " data-kt-image-input="true" style="background-image: url(http://127.0.0.1:8000/media/avatars/blank.png)">
                             <!--begin::Image preview wrapper-->
-                            <div class="image-input-wrapper w-125px h-125px" style="background-image: url(http://crudpractice.cw/media/avatars/blank.png)"></div>
+                            <div class="image-input-wrapper w-125px h-125px" style="background-image: url(http://127.0.0.1:8000/media/avatars/blank.png)"></div>
                             <!--end::Image preview wrapper-->
 
                             <!--begin::Edit button-->
@@ -718,9 +718,9 @@
                     </div><!-- col end -->
                     <div class="form-group mb-4 col-md-4">
                         <!--begin::Image input-->
-                        <div class="image-input" data-kt-image-input="true" style="background-image: url(http://crudpractice.cw/media/avatars/blank.png)">
+                        <div class="image-input" data-kt-image-input="true" style="background-image: url(http://127.0.0.1:8000/media/avatars/blank.png)">
                             <!--begin::Image preview wrapper-->
-                            <div class="image-input-wrapper w-125px h-125px" style="background-image: url(http://crudpractice.cw/media/avatars/blank.png)"></div>
+                            <div class="image-input-wrapper w-125px h-125px" style="background-image: url(http://127.0.0.1:8000/media/avatars/blank.png)"></div>
                             <!--end::Image preview wrapper-->
 
                             <!--begin::Edit button-->

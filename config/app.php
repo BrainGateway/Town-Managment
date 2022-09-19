@@ -161,7 +161,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        Meneses\LaravelMpdf\LaravelMpdfServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -235,6 +235,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
+        'PDF' => Meneses\LaravelMpdf\Facades\LaravelMpdf::class,
 
     ],
 

@@ -47,15 +47,15 @@ class Plot extends Model
 
     public static function createplot($data)
     {
-        // try{
+        try{
             $plot  = Plot::create($data);
             return $plot;
 
-        // } catch(\Throwable $th) {
-        //     Log::debug($th->getMessage());
-        //     Log::debug($th->getTraceAsString());
-        //     return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
-        // }
+        } catch(\Throwable $th) {
+            Log::debug($th->getMessage());
+            Log::debug($th->getTraceAsString());
+            return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
+        }
     }
 
     public static function updatePlot($id, $data)
