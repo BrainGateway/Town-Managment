@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class PlotSale extends Model
 {
@@ -92,6 +93,8 @@ class PlotSale extends Model
                     $plot_info['nominee_owner_plot']    = $create_nominee->id;
 
                     $plotsale = PlotSale::create($plot_info);
+                    
+                    $this->generatePdf($plot_info);
                 }
             }
             DB::commit();
@@ -131,7 +134,7 @@ class PlotSale extends Model
 
     public static function createUser($data){
         try {
-            $user = User::create($data);
+            $user = User::createUser($data);
             return $user ;
         } catch (\Throwable $th) {
             Log::debug($th->getMessage());
@@ -139,6 +142,33 @@ class PlotSale extends Model
             return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
         }
 
+    }
+
+
+    public function generatePdf($data)
+    {
+        try{
+            
+            $data = $data;
+            dd('generatePdf' , $data );
+            $pdf = PDF::loadView('document.pdf', $data,[],
+            [
+              'orientation'              => 'P',
+              'margin_left'              => 0,
+              'margin_right'             => 0,
+              'margin_top'               => 0,
+              'margin_bottom'            => 0,
+              'default_font_size'        => '8',
+              'format'                   => [101.6, 50.8]
+            ]);
+            // $pdf->setPaper('a4', 'potrait');
+            return $pdf->stream('document.pdf');
+
+        } catch(\Throwable $th) {
+            Log::debug($th->getMessage());
+            Log::debug($th->getTraceAsString());
+            return response()->json(['status'=>'error', 'message'=>$th->getMessage()]);
+        }
     }
 
 
