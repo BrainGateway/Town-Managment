@@ -25,11 +25,11 @@ class PlotInstallementController extends Controller
                 return PlotInstallementResource::collection(PlotInstallement::all());
             }else{
                 if ($request->ajax()) {
-                    $plotInstallement =  PlotInstallement::indexTown();
+                    $plotInstallement =  PlotInstallement::indexPlotInstallement();
                     $plotInstallementDatatable = !empty($plotInstallement) ? $plotInstallement : [];
                     return $plotInstallementDatatable;
-                 }
-                return view('plot-installement.index');
+                }
+                return view('plot-installment.index');
             }
         } catch(\Throwable $th) {
             Log::debug($th->getMessage());
@@ -45,7 +45,7 @@ class PlotInstallementController extends Controller
      */
     public function create()
     {
-        return view('plot-installement.create');
+        return view('plot-installment.create');
     }
 
     /**
@@ -65,7 +65,7 @@ class PlotInstallementController extends Controller
             if ($request->is('api/*')) {
                 return $this->show($plotInstallement->id);
             }else{
-                return redirect()->route('plot-installement.index');
+                return redirect()->route('plot-installment.index');
             }
         } catch(\Throwable $th) {
             Log::debug($th->getMessage());
@@ -95,7 +95,7 @@ class PlotInstallementController extends Controller
     public function edit($id)
     {
         $plotInstallement      = PlotInstallement::findOrFail($id);
-        return view('plot-installement.edit', compact('plotInstallement'));
+        return view('plot-installment.edit', compact('plotInstallement'));
     }
 
     /**
@@ -110,13 +110,13 @@ class PlotInstallementController extends Controller
         try{
             $plotInstallement               = plotInstallement::findOrFail($id);
             $data                           = Arr::only($request->validated(), ['payment_type','deposit_amount','slip_number','auto_slip_number','payment_method','deposit_slip','town_id','number_of_plot','owner_plot']);
-            
+
             plotInstallement::updatePlotInstallement($id, $data);
             if ($request->is('api/*')) {
 
                 return $this->show($id);
             }else{
-                return redirect()->route('plot-installement.index');
+                return redirect()->route('plot-installment.index');
             }
 
         } catch(\Throwable $th) {

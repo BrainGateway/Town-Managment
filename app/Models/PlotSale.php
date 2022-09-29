@@ -94,7 +94,7 @@ class PlotSale extends Model
 
                     $plotsale = PlotSale::create($plot_info);
                     
-                    $this->generatePdf($plot_info);
+                    // $this->generatePdf($plot_info);
                 }
             }
             DB::commit();
@@ -134,7 +134,7 @@ class PlotSale extends Model
 
     public static function createUser($data){
         try {
-            $user = User::createUser($data);
+            $user = User::create($data);
             return $user ;
         } catch (\Throwable $th) {
             Log::debug($th->getMessage());

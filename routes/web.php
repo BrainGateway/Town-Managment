@@ -10,6 +10,8 @@ use App\Http\Controllers\PlotTypeController;
 use App\Http\Controllers\PlotSizeController;
 use App\Http\Controllers\PlotController;
 use App\Http\Controllers\PlotSaleController;
+use App\Http\Controllers\PlotInstallementController;
+
 
 
 
@@ -62,6 +64,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('plots',                        PlotController::class);
     Route::resource('size-dimensions',              PlotSizeController::class);
     Route::resource('plot-sales',                   PlotSaleController::class);
+
+
+    Route::resource('installments',                 PlotInstallementController::class);
+
 
 
 });
