@@ -52,6 +52,8 @@ class PlotInstallement extends Model
     {
         try{
             $plotInstallement  = PlotInstallement::create($data);
+
+            // dd($plotInstallement);
             // locate a user (or ANY MODEL that implementes the AccountingJournal trait)
             $id = auth()->user()->id;
             $user = User::find($id);
@@ -65,9 +67,6 @@ class PlotInstallement extends Model
             // credit the user and reference the product
             $transaction_1 = $user->journal->creditDollars(100);
             $transaction_1->referencesObject($product);
-
-
-
 
             return $plotInstallement;
 

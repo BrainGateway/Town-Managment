@@ -55,8 +55,8 @@
                             <label class="required form-label">Plot Number</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" value="{{old('plot_number')}}" name="plot_number" class="form-control" required>
-                            @error('plot_number')
+                            <input type="text" value="{{old('number_of_plot')}}" name="number_of_plot" class="form-control" required>
+                            @error('number_of_plot')
                                 <div class="fv-plugins-message-container invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -71,8 +71,8 @@
                             <label class="required form-label">Owner Name</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" value="{{old('plot_owner')}}" name="plot_owner" class="form-control" required>
-                            @error('plot_owner')
+                            <input type="text" value="{{old('owner_plot')}}" name="owner_plot" class="form-control" required>
+                            @error('owner_plot')
                                 <div class="fv-plugins-message-container invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -88,7 +88,7 @@
 
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input class="form-control" type="number" id="deal_amount" name="deal_amount" min="1" max="180" value="{{ old('deal_amount') }}" required>
+                            <input class="form-control" type="number" id="deal_amount" name="deal_amount"  value="{{ old('deal_amount') }}" required>
                             @error('deal_amount')
                                 <div class="fv-plugins-message-container invalid-feedback">
                                     {{ $message }}
@@ -154,7 +154,7 @@
 
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input class="form-control" type="number" id="remaining_amount" name="remaining_amount" min="1" max="180" value="{{ old('remaining_amount') }}" required>
+                            <input class="form-control" type="number" id="remaining_amount" name="remaining_amount"  value="{{ old('remaining_amount') }}" required>
                             @error('remaining_amount')
                                 <div class="fv-plugins-message-container invalid-feedback">
                                     {{ $message }}

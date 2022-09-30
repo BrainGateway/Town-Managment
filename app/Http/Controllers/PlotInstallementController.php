@@ -65,7 +65,7 @@ class PlotInstallementController extends Controller
             if ($request->is('api/*')) {
                 return $this->show($plotInstallement->id);
             }else{
-                return redirect()->route('plot-installment.index');
+                return redirect()->route('installments.index');
             }
         } catch(\Throwable $th) {
             Log::debug($th->getMessage());
@@ -95,6 +95,7 @@ class PlotInstallementController extends Controller
     public function edit($id)
     {
         $plotInstallement      = PlotInstallement::findOrFail($id);
+        // dd($plotInstallement);
         return view('plot-installment.edit', compact('plotInstallement'));
     }
 

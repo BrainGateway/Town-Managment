@@ -64,11 +64,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('plots',                        PlotController::class);
     Route::resource('size-dimensions',              PlotSizeController::class);
     Route::resource('plot-sales',                   PlotSaleController::class);
-
-
     Route::resource('installments',                 PlotInstallementController::class);
 
     Route::get('/users-journal', [Controllers\UserController::class, 'getUsersJournal'])->name('users-lists');
 
 
 });
+
