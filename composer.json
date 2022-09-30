@@ -5,7 +5,7 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.1",
+        "php": "^7.4|^8.0",
         "bavix/laravel-clickhouse": "^2.2",
         "carlos-meneses/laravel-mpdf": "^2.1",
         "fideloper/proxy": "^4.4",
@@ -16,9 +16,10 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
         "realrashid/sweet-alert": "^5.0",
+        "scottlaurent/accounting": "^0.3.3",
         "spatie/enum": "^3.12",
         "spatie/laravel-permission": "^5.5",
-        "yajra/laravel-datatables-buttons": "4.10",
+        "yajra/laravel-datatables-buttons": "4.10.0",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {

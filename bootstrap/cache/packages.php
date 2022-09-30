@@ -129,6 +129,13 @@
       'Alert' => 'RealRashid\\SweetAlert\\Facades\\Alert',
     ),
   ),
+  'scottlaurent/accounting' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Scottlaurent\\Accounting\\Providers\\AccountingServiceProvider',
+    ),
+  ),
   'spatie/laravel-permission' => 
   array (
     'providers' => 

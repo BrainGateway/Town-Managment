@@ -20,6 +20,15 @@
     </style>
 
 <div class="container-fluid" id="app">
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
     <form id="kt_modal_add_plot_form" method="post" action="{{ route('installments.store') }}" autocomplete="off" enctype="multipart/form-data">
         @csrf
@@ -79,7 +88,7 @@
 
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input class="form-control" type="deal_amount" id="deal_amount" name="deal_amount" min="1" max="180" value="{{ old('deal_amount') }}" required>
+                            <input class="form-control" type="number" id="deal_amount" name="deal_amount" min="1" max="180" value="{{ old('deal_amount') }}" required>
                             @error('deal_amount')
                                 <div class="fv-plugins-message-container invalid-feedback">
                                     {{ $message }}
@@ -112,7 +121,7 @@
                             <label class="required form-label">Already Paid</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" value="{{old('paid_amount')}}" name="paid_amount" class="form-control" required>
+                            <input type="number" value="{{old('paid_amount')}}" name="paid_amount" class="form-control" required>
                             @error('paid_amount')
                                 <div class="fv-plugins-message-container invalid-feedback">
                                     {{ $message }}
@@ -128,7 +137,7 @@
                             <label class="required form-label">Deposit Amount</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" value="{{old('deposit_amount')}}" name="deposit_amount" class="form-control" required>
+                            <input type="number" value="{{old('deposit_amount')}}" name="deposit_amount" class="form-control" required>
                             @error('deposit_amount')
                                 <div class="fv-plugins-message-container invalid-feedback">
                                     {{ $message }}
@@ -145,7 +154,7 @@
 
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input class="form-control" type="remaining_amount" id="remaining_amount" name="remaining_amount" min="1" max="180" value="{{ old('remaining_amount') }}" required>
+                            <input class="form-control" type="number" id="remaining_amount" name="remaining_amount" min="1" max="180" value="{{ old('remaining_amount') }}" required>
                             @error('remaining_amount')
                                 <div class="fv-plugins-message-container invalid-feedback">
                                     {{ $message }}
@@ -158,11 +167,11 @@
                         <!--begin::Input group-->
                         <div class="fv-row  fv-plugins-icon-container">
                             <!--begin::Label-->
-                            <label class="required form-label">Slip Number</label>
+                            <label class="required form-label">Deposit slip Number</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" value="{{old('slip_number')}}" name="slip_number" class="form-control" required>
-                            @error('slip_number')
+                            <input type="text" value="{{old('deposit_slip')}}" name="deposit_slip" class="form-control" required>
+                            @error('deposit_slip')
                                 <div class="fv-plugins-message-container invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -177,8 +186,8 @@
                             <label class="required form-label">Auto Generated Number</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" value="{{old('auto_number')}}" name="auto_number" class="form-control" required>
-                            @error('auto_number')
+                            <input type="text" value="{{old('auto_slip_number')}}" name="auto_slip_number" class="form-control" required>
+                            @error('auto_slip_number')
                                 <div class="fv-plugins-message-container invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -194,7 +203,7 @@
 
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input class="form-control" type="payment_method" id="payment_method" name="payment_method" min="1" max="180" value="{{ old('payment_method') }}" required>
+                            <input class="form-control" type="text" id="payment_method" name="payment_method"  value="{{ old('payment_method') }}" required>
                             @error('payment_method')
                                 <div class="fv-plugins-message-container invalid-feedback">
                                     {{ $message }}

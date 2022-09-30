@@ -56,7 +56,7 @@ class PlotInstallementController extends Controller
      */
     public function store(StorePlotInstallementRequest $request)
     {
-        //
+        // dd($request);
 
         try{
             $data               = Arr::only($request->validated(), ['payment_type','deposit_amount','slip_number','auto_slip_number','payment_method','deposit_slip','town_id','number_of_plot','owner_plot']);

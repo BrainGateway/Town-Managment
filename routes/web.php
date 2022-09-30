@@ -68,6 +68,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::resource('installments',                 PlotInstallementController::class);
 
+    Route::get('/users-journal', [Controllers\UserController::class, 'getUsersJournal'])->name('users-lists');
 
 
 });

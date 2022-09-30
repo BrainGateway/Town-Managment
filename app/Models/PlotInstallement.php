@@ -12,6 +12,7 @@ class PlotInstallement extends Model
 {
     use HasFactory;
 
+
     protected $fillable = [
         'payment_type',
         'deposit_amount',
@@ -51,6 +52,23 @@ class PlotInstallement extends Model
     {
         try{
             $plotInstallement  = PlotInstallement::create($data);
+            // locate a user (or ANY MODEL that implementes the AccountingJournal trait)
+            $id = auth()->user()->id;
+            $user = User::find($id);
+
+            // locate a product (optional)
+            $product = PlotInstallement::find($plotInstallement->id);
+
+            // init a journal for this user (do this only once)
+            $user->initJournal();
+
+            // credit the user and reference the product
+            $transaction_1 = $user->journal->creditDollars(100);
+            $transaction_1->referencesObject($product);
+
+
+
+
             return $plotInstallement;
 
         } catch(\Throwable $th) {

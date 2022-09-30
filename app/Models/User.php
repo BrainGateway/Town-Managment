@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Http\Controllers\Traits\GeneralTrait;
+use App\Http\Controllers\Traits\AccountingJournal;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -21,6 +22,8 @@ class User extends Authenticatable
     use Notifiable;
     use  HasRoles;
     use GeneralTrait;
+    use AccountingJournal;
+
 
     /**
      * The attributes that are mass assignable.

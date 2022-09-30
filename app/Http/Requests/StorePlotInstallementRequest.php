@@ -30,11 +30,10 @@ class StorePlotInstallementRequest extends FormRequest
             'auto_slip_number'      => 'required',
             'payment_method'        => 'required',
             'deposit_slip'          => 'required',
-            'town_id'               => 'required',
+            'town_id'               => '',
             'number_of_plot'        => 'required',
             'owner_plot'            => 'required',
         ];
     }
 }
 
-   
